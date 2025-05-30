@@ -47,7 +47,7 @@ const Header = () => {
             </div>
             <div className="hidden md:flex items-center space-x-4">
               <span className="mr-4">Horaires : Lun-Ven 8h00-17h00</span>
-              <a href="https://www.facebook.com/ecolecasahills" target="_blank" rel="noopener noreferrer">
+              <a href="https://web.facebook.com/profile.php?id=100078730485495" target="_blank" rel="noopener noreferrer">
                 <Facebook className="h-4 w-4 hover:text-blue-200 cursor-pointer" />
               </a>
               <a href="https://www.instagram.com/ecolecasahills/" target="_blank" rel="noopener noreferrer">

@@ -5,7 +5,7 @@ const SocialSidebar = () => {
   const socialLinks = [
     {
       icon: <Facebook className="h-5 w-5" />,
-      href: "https://www.facebook.com/ecolecasahills/",
+      href: "https://web.facebook.com/profile.php?id=100078730485495",
       label: "Facebook",
       bgColor: "bg-blue-600 hover:bg-blue-700"
     },
