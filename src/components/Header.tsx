@@ -1,8 +1,7 @@
 
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Menu, X, Phone, Mail, ChevronDown } from 'lucide-react';
+import { Menu, X, Phone, Mail } from 'lucide-react';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -20,7 +19,6 @@ const Header = () => {
     { name: 'Accueil', href: '/' },
     { name: 'Notre École', href: '/philosophie' },
     { name: 'Admissions', href: '/admissions' },
-    { name: 'Actualités', href: '/actualites' },
     { name: 'Contact', href: '/contact' }
   ];
 
@@ -40,11 +38,11 @@ const Header = () => {
             <div className="flex items-center space-x-4">
               <div className="flex items-center">
                 <Phone className="h-4 w-4 mr-2" />
-                <span>+212 522 XX XX XX</span>
+                <span>05 22 75 93 04 / 06 31 03 02 60</span>
               </div>
               <div className="flex items-center">
                 <Mail className="h-4 w-4 mr-2" />
-                <span>contact@casahills.ma</span>
+                <span>G.scasahills@gmail.com</span>
               </div>
             </div>
             <div className="hidden md:block">
@@ -132,15 +130,6 @@ const Header = () => {
             ))}
           </nav>
 
-          <div className="hidden lg:flex items-center space-x-3">
-            <Button variant="outline" size="sm" className="border-casa-blue text-casa-blue hover:bg-casa-blue hover:text-white">
-              Brochure
-            </Button>
-            <Button className="bg-casa-red hover:bg-red-700" size="sm">
-              Inscription
-            </Button>
-          </div>
-
           {/* Mobile menu button */}
           <button
             className="lg:hidden p-2"
@@ -190,15 +179,6 @@ const Header = () => {
                   {cycle.name} ({cycle.age})
                 </Link>
               ))}
-            </div>
-            
-            <div className="pt-4 border-t space-y-2">
-              <Button variant="outline" size="sm" className="w-full border-casa-blue text-casa-blue">
-                Télécharger la brochure
-              </Button>
-              <Button className="bg-casa-red hover:bg-red-700 w-full" size="sm">
-                Demander une inscription
-              </Button>
             </div>
           </div>
         </div>

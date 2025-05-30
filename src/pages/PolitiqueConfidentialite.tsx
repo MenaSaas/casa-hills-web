@@ -24,7 +24,7 @@ const PolitiqueConfidentialite = () => {
     {
       icon: <UserCheck className="h-8 w-8 text-casa-blue" />,
       title: "Vos droits",
-      content: "Conformément au RGPD, vous disposez des droits d'accès, de rectification, d'effacement, de limitation du traitement, de portabilité des données et d'opposition. Pour exercer ces droits, contactez-nous à contact@casahills.ma."
+      content: "Conformément au RGPD, vous disposez des droits d'accès, de rectification, d'effacement, de limitation du traitement, de portabilité des données et d'opposition. Pour exercer ces droits, contactez-nous à G.scasahills@gmail.com."
     }
   ];
 
@@ -81,11 +81,11 @@ const PolitiqueConfidentialite = () => {
             <Card className="p-8">
               <h2 className="text-2xl font-bold mb-4">Responsable du traitement</h2>
               <p className="text-gray-700 mb-4">
-                Casa Hills, école privée située au Quartier Anfa, Boulevard de la Corniche, 
-                Casablanca 20000, Maroc, est le responsable du traitement de vos données personnelles.
+                Casa Hills, école privée située au Complexe Résidentiel Albadr, 
+                Sidi Bernoussi, Casablanca, Maroc, est le responsable du traitement de vos données personnelles.
               </p>
               <p className="text-gray-700">
-                <strong>Contact :</strong> contact@casahills.ma | +212 522 XX XX XX
+                <strong>Contact :</strong> G.scasahills@gmail.com | 05 22 75 93 04 / 06 31 03 02 60
               </p>
             </Card>
 
@@ -145,9 +145,9 @@ const PolitiqueConfidentialite = () => {
               ou l'utilisation de vos données personnelles, contactez-nous :
             </p>
             <div className="space-y-2 text-casa-blue font-medium">
-              <p>Email : contact@casahills.ma</p>
-              <p>Téléphone : +212 522 XX XX XX</p>
-              <p>Adresse : Quartier Anfa, Boulevard de la Corniche, Casablanca 20000</p>
+              <p>Email : G.scasahills@gmail.com</p>
+              <p>Téléphone : 05 22 75 93 04 / 06 31 03 02 60</p>
+              <p>Adresse : Complexe Résidentiel Albadr, Sidi Bernoussi, Casablanca</p>
             </div>
           </div>
         </div>

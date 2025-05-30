@@ -8,8 +8,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { FileText, Calendar, Users, CheckCircle, Phone, Mail } from 'lucide-react';
+import { FileText, Calendar, Users, CheckCircle, Phone, Mail, FileImage, ClipboardList, Heart } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const Admissions = () => {
@@ -21,11 +22,22 @@ const Admissions = () => {
     childName: '',
     childAge: '',
     schoolLevel: '',
-    message: ''
+    message: '',
+    privacyAccepted: false
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!formData.privacyAccepted) {
+      toast({
+        title: "Erreur",
+        description: "Vous devez accepter la politique de confidentialité pour continuer.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     toast({
       title: "Demande d'inscription envoyée",
       description: "Nous vous contacterons dans les 48h pour finaliser votre dossier.",
@@ -37,7 +49,8 @@ const Admissions = () => {
       childName: '',
       childAge: '',
       schoolLevel: '',
-      message: ''
+      message: '',
+      privacyAccepted: false
     });
   };
 
@@ -64,6 +77,29 @@ const Admissions = () => {
     }
   ];
 
+  const requiredDocuments = [
+    {
+      icon: <FileText className="h-6 w-6 text-casa-blue" />,
+      title: "Acte de naissance",
+      description: "Copie certifiée conforme de l'acte de naissance de l'enfant"
+    },
+    {
+      icon: <ClipboardList className="h-6 w-6 text-casa-blue" />,
+      title: "Relevé scolaire",
+      description: "Bulletins scolaires des deux dernières années (si applicable)"
+    },
+    {
+      icon: <FileImage className="h-6 w-6 text-casa-blue" />,
+      title: "Photo d'identité",
+      description: "2 photos d'identité récentes de l'enfant"
+    },
+    {
+      icon: <Heart className="h-6 w-6 text-casa-blue" />,
+      title: "Dossier médical",
+      description: "Certificat médical et carnet de vaccination à jour"
+    }
+  ];
+
   const faqs = [
     {
       question: "Quels sont les frais de scolarité ?",
@@ -76,10 +112,6 @@ const Admissions = () => {
     {
       question: "Quelle est la politique d'admission ?",
       answer: "Les admissions se font sur dossier et entretien. Nous accueillons les élèves de toutes nationalités dans la limite des places disponibles."
-    },
-    {
-      question: "Proposez-vous des bourses d'études ?",
-      answer: "Nous accordons un nombre limité de bourses partielles basées sur l'excellence académique et les critères sociaux. Les demandes sont étudiées au cas par cas."
     },
     {
       question: "Quel est le calendrier des inscriptions ?",
@@ -103,15 +135,57 @@ const Admissions = () => {
               Rejoignez la famille Casa Hills et offrez à votre enfant une éducation d'excellence. 
               Découvrez notre processus d'admission simple et transparent.
             </p>
-            <Button size="lg" className="bg-white text-casa-blue hover:bg-gray-100">
-              Télécharger la brochure
-            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Documents requis */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-display font-bold text-gray-900 mb-4">
+              Documents Requis pour l'Admission
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Préparez ces documents essentiels pour constituer votre dossier d'admission.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            {requiredDocuments.map((document, index) => (
+              <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow">
+                <CardContent className="p-0">
+                  <div className="mb-4 flex justify-center">{document.icon}</div>
+                  <h3 className="text-lg font-semibold mb-3">{document.title}</h3>
+                  <p className="text-gray-600 text-sm">{document.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <div className="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
+              <h3 className="text-xl font-semibold mb-4">Déposer votre dossier</h3>
+              <p className="text-gray-600 mb-4">
+                Une fois vos documents prêts, contactez-nous pour organiser le dépôt de votre dossier.
+              </p>
+              <div className="space-y-2 text-sm">
+                <div className="flex items-center justify-center space-x-2">
+                  <Phone className="h-4 w-4 text-casa-blue" />
+                  <span>05 22 75 93 04 / 06 31 03 02 60</span>
+                </div>
+                <div className="flex items-center justify-center space-x-2">
+                  <Mail className="h-4 w-4 text-casa-blue" />
+                  <span>G.scasahills@gmail.com</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Processus d'admission */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-gray-900 mb-4">
@@ -137,7 +211,7 @@ const Admissions = () => {
       </section>
 
       {/* Formulaire d'inscription */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-display font-bold text-gray-900 mb-4">
@@ -239,6 +313,18 @@ const Admissions = () => {
                 />
               </div>
 
+              <div className="flex items-start space-x-2">
+                <Checkbox
+                  id="privacy"
+                  checked={formData.privacyAccepted}
+                  onCheckedChange={(checked) => setFormData({...formData, privacyAccepted: checked as boolean})}
+                  required
+                />
+                <Label htmlFor="privacy" className="text-sm leading-relaxed">
+                  J'accepte la <a href="/politique-confidentialite" className="text-casa-blue hover:underline">politique de confidentialité</a> de l'école Casa Hills. *
+                </Label>
+              </div>
+
               <Button type="submit" className="w-full bg-casa-blue hover:bg-blue-700" size="lg">
                 Envoyer la demande de pré-inscription
               </Button>
@@ -248,7 +334,7 @@ const Admissions = () => {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-display font-bold text-gray-900 mb-4">
@@ -271,28 +357,6 @@ const Admissions = () => {
               </AccordionItem>
             ))}
           </Accordion>
-        </div>
-      </section>
-
-      {/* Contact rapide */}
-      <section className="py-20 bg-casa-blue text-white">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-display font-bold mb-6">
-            Besoin d'informations complémentaires ?
-          </h2>
-          <p className="text-xl mb-8 text-blue-100">
-            Notre équipe est à votre disposition pour répondre à toutes vos questions.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
-            <div className="flex items-center justify-center space-x-3">
-              <Phone className="h-6 w-6" />
-              <span className="text-lg">+212 522 XX XX XX</span>
-            </div>
-            <div className="flex items-center justify-center space-x-3">
-              <Mail className="h-6 w-6" />
-              <span className="text-lg">admissions@casahills.ma</span>
-            </div>
-          </div>
         </div>
       </section>
 

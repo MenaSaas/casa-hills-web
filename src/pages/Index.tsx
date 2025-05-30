@@ -1,10 +1,9 @@
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
-import { Star, Users, Globe, Award, BookOpen, Heart, ArrowRight } from 'lucide-react';
+import { BookOpen, Globe, Users, Award, ArrowRight } from 'lucide-react';
 
 const Index = () => {
   const features = [
@@ -30,54 +29,33 @@ const Index = () => {
     }
   ];
 
-  const testimonials = [
-    {
-      name: "Sarah Alami",
-      role: "Mère d'élève - Primaire",
-      content: "Casa Hills a transformé l'apprentissage de ma fille. L'approche bienveillante et l'excellence pédagogique sont remarquables.",
-      rating: 5
-    },
-    {
-      name: "Mohamed Benali",
-      role: "Père d'élève - Collège",
-      content: "L'ouverture internationale et la qualité de l'encadrement préparent parfaitement nos enfants à leur avenir.",
-      rating: 5
-    },
-    {
-      name: "Fatima Chraibi",
-      role: "Mère d'élève - Lycée",
-      content: "Un environnement stimulant où chaque élève peut s'épanouir et révéler son potentiel. Nous recommandons vivement.",
-      rating: 5
-    }
-  ];
-
   const schoolLevels = [
     {
       title: "Maternelle",
       description: "Éveil et développement dans un cadre sécurisant",
       age: "3-6 ans",
-      image: "photo-1581091226825-a6a2a5aee158",
+      image: "photo-1503454537195-1dcabb73ffb9",
       link: "/maternelle"
     },
     {
       title: "Primaire", 
       description: "Fondamentaux solides et épanouissement personnel",
       age: "6-11 ans",
-      image: "photo-1519389950473-47ba0277781c",
+      image: "photo-1497486751825-1233686d5d80",
       link: "/primaire"
     },
     {
       title: "Collège",
       description: "Approfondissement et ouverture sur le monde",
       age: "11-15 ans", 
-      image: "photo-1486312338219-ce68d2c6f44d",
+      image: "photo-1544717297-fa95b6ee9643",
       link: "/college"
     },
     {
       title: "Lycée",
       description: "Excellence et préparation aux études supérieures",
       age: "15-18 ans",
-      image: "photo-1605810230434-7631ac76ec81",
+      image: "photo-1522661067900-9b6b4c892583",
       link: "/lycee"
     }
   ];
@@ -104,18 +82,24 @@ const Index = () => {
                 nous accompagnons chaque élève vers la réussite.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-casa-red hover:bg-red-700 text-lg px-8">
-                  Inscrivez votre enfant
-                </Button>
-                <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-casa-blue text-lg px-8">
-                  Visite virtuelle
-                </Button>
+                <Link 
+                  to="/admissions"
+                  className="inline-flex items-center justify-center bg-casa-red hover:bg-red-700 text-white px-8 py-3 rounded-md text-lg font-medium transition-colors"
+                >
+                  Découvrir nos admissions
+                </Link>
+                <Link 
+                  to="/contact"
+                  className="inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-casa-blue px-8 py-3 rounded-md text-lg font-medium transition-colors"
+                >
+                  Nous contacter
+                </Link>
               </div>
             </div>
             <div className="relative">
               <img
-                src={`https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80`}
-                alt="Élèves de Casa Hills en activité"
+                src={`https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80`}
+                alt="Groupe d'élèves de Casa Hills"
                 className="rounded-2xl shadow-2xl"
               />
               <div className="absolute -bottom-6 -left-6 bg-white text-gray-900 p-6 rounded-xl shadow-lg">
@@ -207,39 +191,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20 bg-casa-beige">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold text-gray-900 mb-4">
-              Ce que disent nos parents
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              La confiance de nos familles est notre plus belle récompense.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="p-6">
-                <CardContent className="p-0">
-                  <div className="flex mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-gray-700 mb-4 italic">"{testimonial.content}"</p>
-                  <div>
-                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                    <div className="text-sm text-gray-600">{testimonial.role}</div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-casa-blue to-casa-red text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
@@ -248,15 +199,21 @@ const Index = () => {
           </h2>
           <p className="text-xl mb-8 text-blue-50">
             Offrez à votre enfant une éducation d'exception dans un environnement 
-            bienveillant et stimulant. Les inscriptions sont ouvertes !
+            bienveillant et stimulant.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-casa-blue hover:bg-gray-100 text-lg px-8">
-              Demander une brochure
-            </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-casa-blue text-lg px-8">
-              Prendre un rendez-vous
-            </Button>
+            <Link 
+              to="/admissions"
+              className="inline-flex items-center justify-center bg-white text-casa-blue hover:bg-gray-100 px-8 py-3 rounded-md text-lg font-medium transition-colors"
+            >
+              Découvrir les admissions
+            </Link>
+            <Link 
+              to="/contact"
+              className="inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-casa-blue px-8 py-3 rounded-md text-lg font-medium transition-colors"
+            >
+              Nous contacter
+            </Link>
           </div>
         </div>
       </section>

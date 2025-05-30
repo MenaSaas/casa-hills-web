@@ -10,7 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Linkedin, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
@@ -55,17 +55,17 @@ const Contact = () => {
     {
       icon: <MapPin className="h-6 w-6 text-casa-blue" />,
       title: "Adresse",
-      content: "Quartier Anfa, Boulevard de la Corniche\nCasablanca 20000, Maroc"
+      content: "Complexe Résidentiel Albadr\nSidi Bernoussi, Casablanca, Maroc"
     },
     {
       icon: <Phone className="h-6 w-6 text-casa-blue" />,
       title: "Téléphone",
-      content: "+212 522 XX XX XX"
+      content: "05 22 75 93 04\n06 31 03 02 60"
     },
     {
       icon: <Mail className="h-6 w-6 text-casa-blue" />,
       title: "Email",
-      content: "contact@casahills.ma"
+      content: "G.scasahills@gmail.com"
     },
     {
       icon: <Clock className="h-6 w-6 text-casa-blue" />,
@@ -81,7 +81,7 @@ const Contact = () => {
     },
     {
       question: "Quels sont les frais de scolarité ?",
-      answer: "Nos frais de scolarité varient selon le niveau d'études. Nous proposons également des facilités de paiement et des bourses d'excellence. Contactez-nous pour obtenir notre grille tarifaire détaillée."
+      answer: "Nos frais de scolarité varient selon le niveau d'études. Nous proposons également des facilités de paiement. Contactez-nous pour obtenir notre grille tarifaire détaillée."
     },
     {
       question: "Y a-t-il un service de transport scolaire ?",
@@ -97,7 +97,7 @@ const Contact = () => {
     },
     {
       question: "Peut-on visiter l'école avant l'inscription ?",
-      answer: "Bien sûr ! Nous organisons des visites guidées tous les mardis et jeudis sur rendez-vous. Vous pouvez également assister à nos journées portes ouvertes organisées plusieurs fois par an."
+      answer: "Bien sûr ! Nous organisons des visites guidées tous les mardis et jeudis sur rendez-vous. Contactez-nous pour planifier votre visite."
     }
   ];
 
@@ -157,8 +157,8 @@ const Contact = () => {
                     <MapPin className="h-12 w-12 mx-auto mb-4 text-casa-blue" />
                     <p className="text-lg">Carte interactive Google Maps</p>
                     <p className="text-sm mt-2">
-                      Quartier Anfa, Boulevard de la Corniche<br />
-                      Casablanca 20000, Maroc
+                      Complexe Résidentiel Albadr<br />
+                      Sidi Bernoussi, Casablanca, Maroc
                     </p>
                   </div>
                 </div>
@@ -170,14 +170,11 @@ const Contact = () => {
           <div className="text-center">
             <h3 className="text-2xl font-semibold mb-6">Suivez-nous</h3>
             <div className="flex justify-center space-x-6">
-              <a href="#" className="bg-casa-blue hover:bg-blue-700 text-white p-3 rounded-full transition-colors">
+              <a href="https://www.facebook.com/ecolecasahills" target="_blank" rel="noopener noreferrer" className="bg-casa-blue hover:bg-blue-700 text-white p-3 rounded-full transition-colors">
                 <Facebook className="h-6 w-6" />
               </a>
-              <a href="#" className="bg-casa-red hover:bg-red-700 text-white p-3 rounded-full transition-colors">
+              <a href="https://www.instagram.com/ecolecasahills/" target="_blank" rel="noopener noreferrer" className="bg-casa-red hover:bg-red-700 text-white p-3 rounded-full transition-colors">
                 <Instagram className="h-6 w-6" />
-              </a>
-              <a href="#" className="bg-casa-blue hover:bg-blue-700 text-white p-3 rounded-full transition-colors">
-                <Linkedin className="h-6 w-6" />
               </a>
             </div>
           </div>
@@ -284,26 +281,6 @@ const Contact = () => {
               </Button>
             </form>
           </Card>
-        </div>
-      </section>
-
-      {/* Call to Action Buttons */}
-      <section className="py-16 bg-casa-beige">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-display font-bold text-gray-900 mb-8">
-            Prêt à rejoindre Casa Hills ?
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <Button size="lg" className="bg-casa-blue hover:bg-blue-700">
-              Demander une brochure
-            </Button>
-            <Button size="lg" variant="outline" className="border-casa-blue text-casa-blue hover:bg-casa-blue hover:text-white">
-              Planifier une visite
-            </Button>
-            <Button size="lg" className="bg-casa-red hover:bg-red-700">
-              S'inscrire maintenant
-            </Button>
-          </div>
         </div>
       </section>
 
