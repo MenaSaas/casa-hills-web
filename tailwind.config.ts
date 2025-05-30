@@ -53,11 +53,11 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Custom Casa Hills colors
+        // Custom Casa Hills colors - Bleu, Rouge, Blanc
         casa: {
-          blue: "#2563eb",   // Bleu principal
-          red: "#dc2626",    // Rouge accent
-          beige: "#fef7ed",  // Beige clair pour les sections
+          blue: "#1e40af",    // Bleu principal du logo
+          red: "#dc2626",     // Rouge du logo
+          white: "#ffffff",   // Blanc pur
         },
       },
       borderRadius: {

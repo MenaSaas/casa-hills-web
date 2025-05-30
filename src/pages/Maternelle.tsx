@@ -1,3 +1,4 @@
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -64,23 +65,23 @@ const Maternelle = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-pink-300 via-purple-400 to-casa-blue text-white">
-        <div className="absolute inset-0 bg-black/10"></div>
+      <section className="relative bg-gradient-to-br from-casa-blue via-white to-casa-red">
+        <div className="absolute inset-0 bg-white/10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-5xl font-display font-bold mb-6">
+              <h1 className="text-5xl font-display font-bold mb-6 text-casa-blue">
                 Maternelle
               </h1>
-              <p className="text-xl mb-4 text-pink-100">
+              <p className="text-xl mb-4 text-casa-red font-medium">
                 Éveil et développement dans un cadre sécurisant
               </p>
-              <p className="text-lg mb-8 text-pink-50 leading-relaxed">
+              <p className="text-lg mb-8 text-gray-700 leading-relaxed">
                 La maternelle Casa Hills offre un premier contact avec l'école dans un 
                 environnement chaleureux et stimulant. Nous accompagnons chaque enfant 
                 dans ses premiers apprentissages avec douceur et bienveillance.
               </p>
-              <div className="flex items-center space-x-6 text-pink-100">
+              <div className="flex items-center space-x-6 text-casa-blue">
                 <div className="text-center">
                   <div className="text-3xl font-bold">3-6</div>
                   <div className="text-sm">ans</div>
@@ -98,20 +99,20 @@ const Maternelle = () => {
             <div className="relative">
               <img
                 src="https://images.unsplash.com/photo-1544776527-59eca25b6645?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Enfants de maternelle en activité créative avec des jeux éducatifs colorés"
-                className="rounded-2xl shadow-2xl"
+                alt="Enfants de maternelle en activité créative"
+                className="rounded-2xl shadow-2xl w-full h-96 object-cover"
               />
-              <div className="absolute inset-0 bg-casa-blue/10 rounded-2xl"></div>
+              <div className="absolute inset-0 bg-casa-blue/5 rounded-2xl"></div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Activités */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-display font-bold text-casa-blue mb-4">
               Nos Activités d'Éveil
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -122,10 +123,10 @@ const Maternelle = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {activities.map((activity, index) => (
-              <Card key={index} className="p-6 text-center hover:shadow-lg transition-shadow">
+              <Card key={index} className="p-6 text-center hover:shadow-lg transition-shadow border-casa-blue/20">
                 <CardContent className="p-0">
                   <div className="mb-4 flex justify-center">{activity.icon}</div>
-                  <h3 className="text-xl font-semibold mb-3">{activity.title}</h3>
+                  <h3 className="text-xl font-semibold mb-3 text-casa-blue">{activity.title}</h3>
                   <p className="text-gray-600">{activity.description}</p>
                 </CardContent>
               </Card>
@@ -135,10 +136,10 @@ const Maternelle = () => {
       </section>
 
       {/* Atouts */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-display font-bold text-casa-blue mb-4">
               Les Atouts de Notre Maternelle
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -148,12 +149,12 @@ const Maternelle = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {strengths.map((strength, index) => (
-              <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
+              <Card key={index} className="p-6 hover:shadow-lg transition-shadow border-casa-red/20">
                 <CardContent className="p-0">
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">{strength.icon}</div>
                     <div>
-                      <h3 className="text-xl font-semibold mb-3">{strength.title}</h3>
+                      <h3 className="text-xl font-semibold mb-3 text-casa-red">{strength.title}</h3>
                       <p className="text-gray-600">{strength.description}</p>
                     </div>
                   </div>
@@ -165,11 +166,11 @@ const Maternelle = () => {
       </section>
 
       {/* Objectifs */}
-      <section className="py-20 bg-casa-beige">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-display font-bold text-gray-900 mb-6">
+              <h2 className="text-4xl font-display font-bold text-casa-blue mb-6">
                 Objectifs de la Maternelle
               </h2>
               <p className="text-lg text-gray-600 mb-8">
@@ -190,25 +191,25 @@ const Maternelle = () => {
             <div className="relative">
               <img
                 src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                alt="Enfants de maternelle jouant avec des puzzles colorés dans un environnement sécurisé"
-                className="rounded-2xl shadow-lg"
+                alt="Enfants de maternelle jouant ensemble"
+                className="rounded-2xl shadow-lg w-full h-96 object-cover"
               />
-              <div className="absolute inset-0 bg-white/10 rounded-2xl"></div>
+              <div className="absolute inset-0 bg-casa-red/5 rounded-2xl"></div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Contact */}
-      <section className="py-20 bg-gradient-to-r from-pink-400 to-purple-500 text-white">
+      <section className="py-20 bg-gradient-to-r from-casa-blue to-casa-red text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-display font-bold mb-6">
             Offrez le meilleur départ à votre enfant
           </h2>
-          <p className="text-xl mb-8 text-pink-50">
+          <p className="text-xl mb-8 text-white/90">
             La maternelle Casa Hills : un environnement bienveillant pour grandir et s'épanouir.
           </p>
-          <div className="space-y-2 text-pink-100">
+          <div className="space-y-2 text-white/80">
             <p>Email : G.scasahills@gmail.com</p>
             <p>Téléphone : 05 22 75 93 04 / 06 31 03 02 60</p>
             <p>Adresse : Complexe Résidentiel Albadr, Sidi Bernoussi, Casablanca</p>

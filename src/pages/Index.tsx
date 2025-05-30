@@ -3,7 +3,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HomeCarousel from '@/components/HomeCarousel';
 import CookieBanner from '@/components/CookieBanner';
-import NewsSection from '@/components/NewsSection';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -61,14 +60,6 @@ const Index = () => {
       image: "photo-1522202176988-66273c2fd55f",
       link: "/college",
       highlights: ["Projets innovants", "Langues vivantes", "Orientation active"]
-    },
-    {
-      title: "Lycée",
-      description: "Excellence et préparation aux études supérieures",
-      age: "15-18 ans",
-      image: "photo-1434030216411-0b793f4b4173",
-      link: "/lycee",
-      highlights: ["Prépa grandes écoles", "Programmes internationaux", "Taux de réussite 98%"]
     }
   ];
 
@@ -87,7 +78,7 @@ const Index = () => {
       <section className="bg-gradient-to-r from-casa-blue/10 via-white to-casa-red/10 py-3 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <p className="text-lg font-display font-semibold text-gray-800 tracking-wide">
+            <p className="text-lg font-display font-semibold text-casa-blue tracking-wide">
               ✨ Une école, mille possibilités ✨
             </p>
           </div>
@@ -95,24 +86,24 @@ const Index = () => {
       </section>
 
       {/* Hero Section with Enhanced Carousel */}
-      <section className="relative bg-gradient-to-br from-casa-blue via-blue-600 to-casa-red text-white">
-        <div className="absolute inset-0 bg-black/20"></div>
+      <section className="relative bg-gradient-to-br from-casa-blue via-white to-casa-red">
+        <div className="absolute inset-0 bg-white/10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
               <div className="mb-4">
-                <span className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full text-sm font-medium text-white backdrop-blur-sm">
+                <span className="inline-flex items-center px-4 py-2 bg-casa-blue/20 text-casa-blue rounded-full text-sm font-medium backdrop-blur-sm">
                   <Award className="h-4 w-4 mr-2" />
                   École privée d'excellence
                 </span>
               </div>
-              <h1 className="text-4xl lg:text-6xl font-display font-bold mb-6">
+              <h1 className="text-4xl lg:text-6xl font-display font-bold mb-6 text-casa-blue">
                 Casa Hills
               </h1>
-              <p className="text-xl lg:text-2xl mb-4 text-blue-100 font-medium">
+              <p className="text-xl lg:text-2xl mb-4 text-casa-red font-medium">
                 L'excellence éducative de la maternelle au lycée
               </p>
-              <p className="text-lg mb-8 text-blue-50 leading-relaxed">
+              <p className="text-lg mb-8 text-gray-700 leading-relaxed">
                 Découvrez une éducation d'exception dans un environnement multiculturel 
                 et bienveillant au cœur de Casablanca. Nous accompagnons chaque élève 
                 vers la réussite et l'épanouissement personnel.
@@ -125,7 +116,7 @@ const Index = () => {
                   </Button>
                 </Link>
                 <Link to="/contact">
-                  <Button variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-casa-blue px-8 py-4 text-lg font-medium transition-all duration-300 hover:scale-105">
+                  <Button variant="outline" size="lg" className="border-2 border-casa-blue text-casa-blue hover:bg-casa-blue hover:text-white px-8 py-4 text-lg font-medium transition-all duration-300 hover:scale-105">
                     Prendre rendez-vous
                   </Button>
                 </Link>
@@ -147,7 +138,7 @@ const Index = () => {
                 <div className="flex justify-center mb-3 text-casa-blue group-hover:scale-110 transition-transform duration-300">
                   {stat.icon}
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-1">{stat.number}</div>
+                <div className="text-3xl font-bold text-casa-blue mb-1">{stat.number}</div>
                 <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
               </div>
             ))}
@@ -159,7 +150,7 @@ const Index = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold text-gray-900 mb-4 animate-fade-in">
+            <h2 className="text-4xl font-display font-bold text-casa-blue mb-4 animate-fade-in">
               Pourquoi choisir Casa Hills ?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in">
@@ -170,14 +161,14 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
-              <Card key={index} className="p-6 text-center hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in group">
+              <Card key={index} className="p-6 text-center hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in group border-casa-blue/20">
                 <CardContent className="p-0">
                   <div className="mb-4 flex justify-center group-hover:scale-110 transition-transform duration-300">
                     {feature.icon}
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+                  <h3 className="text-xl font-semibold mb-3 text-casa-blue">{feature.title}</h3>
                   <p className="text-gray-600 mb-4">{feature.description}</p>
-                  <div className="text-sm font-bold text-casa-blue bg-blue-50 px-3 py-1 rounded-full inline-block">
+                  <div className="text-sm font-bold text-white bg-casa-red px-3 py-1 rounded-full inline-block">
                     {feature.stats}
                   </div>
                 </CardContent>
@@ -188,10 +179,10 @@ const Index = () => {
       </section>
 
       {/* School Levels - Enhanced */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold text-gray-900 mb-4 animate-fade-in">
+            <h2 className="text-4xl font-display font-bold text-casa-blue mb-4 animate-fade-in">
               Nos Cycles Scolaires
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in">
@@ -200,9 +191,9 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {schoolLevels.map((level, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 group animate-fade-in">
+              <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 group animate-fade-in border-casa-blue/20">
                 <div className="aspect-w-16 aspect-h-12 relative">
                   <img
                     src={`https://images.unsplash.com/${level.image}?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80`}
@@ -211,25 +202,25 @@ const Index = () => {
                   />
                   <div className="absolute inset-0 bg-casa-blue/10"></div>
                   <div className="absolute top-4 right-4">
-                    <span className="text-xs font-bold text-white bg-casa-blue/80 backdrop-blur-sm px-3 py-1 rounded-full">
+                    <span className="text-xs font-bold text-white bg-casa-red/80 backdrop-blur-sm px-3 py-1 rounded-full">
                       {level.age}
                     </span>
                   </div>
                 </div>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{level.title}</h3>
+                  <h3 className="text-xl font-semibold mb-2 text-casa-blue">{level.title}</h3>
                   <p className="text-gray-600 mb-4">{level.description}</p>
                   <div className="space-y-2 mb-4">
                     {level.highlights.map((highlight, i) => (
                       <div key={i} className="flex items-center text-sm text-gray-600">
-                        <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                        <CheckCircle className="h-4 w-4 text-casa-red mr-2" />
                         {highlight}
                       </div>
                     ))}
                   </div>
                   <Link 
                     to={level.link}
-                    className="inline-flex items-center text-casa-blue hover:text-blue-700 font-medium transition-colors group"
+                    className="inline-flex items-center text-casa-blue hover:text-casa-red font-medium transition-colors group"
                   >
                     En savoir plus
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -241,17 +232,14 @@ const Index = () => {
         </div>
       </section>
 
-      {/* News Section */}
-      <NewsSection />
-
       {/* Enhanced CTA Section */}
       <section className="py-20 bg-gradient-to-r from-casa-blue to-casa-red text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="absolute inset-0 bg-white/5"></div>
         <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-display font-bold mb-6 animate-fade-in">
             Rejoignez la famille Casa Hills
           </h2>
-          <p className="text-xl mb-8 text-blue-50 animate-fade-in">
+          <p className="text-xl mb-8 text-white/90 animate-fade-in">
             Offrez à votre enfant une éducation d'exception dans un environnement 
             bienveillant et stimulant. Inscriptions ouvertes pour 2024-2025.
           </p>
