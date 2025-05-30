@@ -98,7 +98,7 @@ const Maternelle = () => {
             </div>
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1544776527-59eca25b6645?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 alt="Enfants de maternelle en activité créative"
                 className="rounded-2xl shadow-2xl w-full h-96 object-cover"
               />
@@ -190,7 +190,7 @@ const Maternelle = () => {
             </div>
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                src="https://images.unsplash.com/photo-1544776527-59eca25b6645?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
                 alt="Enfants de maternelle jouant ensemble"
                 className="rounded-2xl shadow-lg w-full h-96 object-cover"
               />
