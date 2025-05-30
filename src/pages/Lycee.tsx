@@ -82,41 +82,31 @@ const Lycee = () => {
       <section className="relative bg-gradient-to-br from-casa-red via-orange-500 to-yellow-500 text-white">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-5xl font-display font-bold mb-6">
-                Lycée
-              </h1>
-              <p className="text-xl mb-4 text-orange-100">
-                Excellence et préparation à l'avenir
-              </p>
-              <p className="text-lg mb-8 text-orange-50 leading-relaxed">
-                Le lycée Casa Hills représente l'aboutissement d'un parcours d'excellence. 
-                Nous préparons nos élèves aux défis des études supérieures et à leur 
-                future carrière professionnelle.
-              </p>
-              <div className="flex items-center space-x-6 text-orange-100">
-                <div className="text-center">
-                  <div className="text-3xl font-bold">15-18</div>
-                  <div className="text-sm">ans</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold">28</div>
-                  <div className="text-sm">élèves/classe</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold">3</div>
-                  <div className="text-sm">filières</div>
-                </div>
+          <div className="text-center">
+            <h1 className="text-5xl font-display font-bold mb-6">
+              Lycée
+            </h1>
+            <p className="text-xl mb-4 text-orange-100">
+              Excellence et préparation à l'avenir
+            </p>
+            <p className="text-lg mb-8 text-orange-50 leading-relaxed max-w-3xl mx-auto">
+              Le lycée Casa Hills représente l'aboutissement d'un parcours d'excellence. 
+              Nous préparons nos élèves aux défis des études supérieures et à leur 
+              future carrière professionnelle.
+            </p>
+            <div className="flex justify-center items-center space-x-6 text-orange-100">
+              <div className="text-center">
+                <div className="text-3xl font-bold">15-18</div>
+                <div className="text-sm">ans</div>
               </div>
-            </div>
-            <div className="relative">
-              <img
-                src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Lycéens en préparation d'oral"
-                className="rounded-2xl shadow-2xl"
-              />
-              <div className="absolute inset-0 bg-casa-blue/10 rounded-2xl"></div>
+              <div className="text-center">
+                <div className="text-3xl font-bold">28</div>
+                <div className="text-sm">élèves/classe</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold">3</div>
+                <div className="text-sm">filières</div>
+              </div>
             </div>
           </div>
         </div>

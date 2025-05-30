@@ -2,8 +2,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HomeCarousel from '@/components/HomeCarousel';
-import ParentTestimonials from '@/components/ParentTestimonials';
-import SchoolResults from '@/components/SchoolResults';
 import CookieBanner from '@/components/CookieBanner';
 import NewsSection from '@/components/NewsSection';
 import { Card, CardContent } from '@/components/ui/card';
@@ -68,7 +66,7 @@ const Index = () => {
       title: "Lycée",
       description: "Excellence et préparation aux études supérieures",
       age: "15-18 ans",
-      image: "photo-1523050854058-8df90110c9f1",
+      image: "photo-1434030216411-0b793f4b4173",
       link: "/lycee",
       highlights: ["Prépa grandes écoles", "Programmes internationaux", "Taux de réussite 98%"]
     }
@@ -242,12 +240,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      {/* School Results Section */}
-      <SchoolResults />
-
-      {/* Parent Testimonials */}
-      <ParentTestimonials />
 
       {/* News Section */}
       <NewsSection />
