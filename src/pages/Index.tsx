@@ -2,7 +2,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HomeCarousel from '@/components/HomeCarousel';
-import InstagramGallery from '@/components/InstagramGallery';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import { BookOpen, Globe, Users, Award, ArrowRight } from 'lucide-react';
@@ -189,9 +188,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      {/* Instagram Gallery */}
-      <InstagramGallery />
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-casa-blue to-casa-red text-white">
