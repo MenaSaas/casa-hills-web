@@ -4,6 +4,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
+import WhatsAppFloat from "./components/WhatsAppFloat";
 import Index from "./pages/Index";
 import Maternelle from "./pages/Maternelle";
 import Primaire from "./pages/Primaire";
@@ -26,6 +28,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/maternelle" element={<Maternelle />} />
@@ -39,9 +42,9 @@ const App = () => (
           <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
           <Route path="/mentions-legales" element={<MentionsLegales />} />
           <Route path="/politique-cookies" element={<PolitiqueCookies />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <WhatsAppFloat />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

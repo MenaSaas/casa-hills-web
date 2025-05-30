@@ -1,6 +1,7 @@
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import HomeCarousel from '@/components/HomeCarousel';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import { BookOpen, Globe, Users, Award, ArrowRight } from 'lucide-react';
@@ -64,7 +65,7 @@ const Index = () => {
     <div className="min-h-screen">
       <Header />
       
-      {/* Hero Section */}
+      {/* Hero Section with Carousel */}
       <section className="relative bg-gradient-to-br from-casa-blue via-blue-600 to-casa-red text-white">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
@@ -83,26 +84,22 @@ const Index = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link 
-                  to="/admissions"
-                  className="inline-flex items-center justify-center bg-casa-red hover:bg-red-700 text-white px-8 py-3 rounded-md text-lg font-medium transition-colors"
-                >
-                  Découvrir nos admissions
-                </Link>
-                <Link 
                   to="/contact"
-                  className="inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-casa-blue px-8 py-3 rounded-md text-lg font-medium transition-colors"
+                  className="inline-flex items-center justify-center bg-casa-red hover:bg-red-700 text-white px-8 py-3 rounded-md text-lg font-medium transition-all duration-300 hover:scale-105"
                 >
                   Nous contacter
                 </Link>
+                <Link 
+                  to="/philosophie"
+                  className="inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-casa-blue px-8 py-3 rounded-md text-lg font-medium transition-all duration-300 hover:scale-105"
+                >
+                  Découvrir notre école
+                </Link>
               </div>
             </div>
-            <div className="relative">
-              <img
-                src={`https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80`}
-                alt="Groupe d'élèves de Casa Hills"
-                className="rounded-2xl shadow-2xl"
-              />
-              <div className="absolute -bottom-6 -left-6 bg-white text-gray-900 p-6 rounded-xl shadow-lg">
+            <div className="relative animate-scale-in">
+              <HomeCarousel />
+              <div className="absolute -bottom-6 -left-6 bg-white text-gray-900 p-6 rounded-xl shadow-lg animate-fade-in">
                 <div className="flex items-center space-x-4">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-casa-blue">500+</div>
@@ -123,10 +120,10 @@ const Index = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-display font-bold text-gray-900 mb-4 animate-fade-in">
               Pourquoi choisir Casa Hills ?
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in">
               Une éducation d'exception qui prépare vos enfants à un avenir prometteur 
               dans un monde en constante évolution.
             </p>
@@ -134,7 +131,7 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
-              <Card key={index} className="p-6 text-center hover:shadow-lg transition-shadow">
+              <Card key={index} className="p-6 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 animate-fade-in">
                 <CardContent className="p-0">
                   <div className="mb-4 flex justify-center">{feature.icon}</div>
                   <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
@@ -150,10 +147,10 @@ const Index = () => {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-display font-bold text-gray-900 mb-4 animate-fade-in">
               Nos Cycles Scolaires
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in">
               Un parcours éducatif complet de la maternelle au lycée, 
               adapté à chaque étape du développement de votre enfant.
             </p>
@@ -161,12 +158,12 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {schoolLevels.map((level, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow group">
+              <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 group animate-fade-in">
                 <div className="aspect-w-16 aspect-h-12">
                   <img
                     src={`https://images.unsplash.com/${level.image}?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80`}
                     alt={level.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
                 <CardContent className="p-6">
@@ -179,7 +176,7 @@ const Index = () => {
                   <p className="text-gray-600 mb-4">{level.description}</p>
                   <Link 
                     to={level.link}
-                    className="inline-flex items-center text-casa-blue hover:text-blue-700 font-medium"
+                    className="inline-flex items-center text-casa-blue hover:text-blue-700 font-medium transition-colors"
                   >
                     En savoir plus
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -194,23 +191,23 @@ const Index = () => {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-casa-blue to-casa-red text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-display font-bold mb-6">
+          <h2 className="text-4xl font-display font-bold mb-6 animate-fade-in">
             Rejoignez la famille Casa Hills
           </h2>
-          <p className="text-xl mb-8 text-blue-50">
+          <p className="text-xl mb-8 text-blue-50 animate-fade-in">
             Offrez à votre enfant une éducation d'exception dans un environnement 
             bienveillant et stimulant.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               to="/admissions"
-              className="inline-flex items-center justify-center bg-white text-casa-blue hover:bg-gray-100 px-8 py-3 rounded-md text-lg font-medium transition-colors"
+              className="inline-flex items-center justify-center bg-white text-casa-blue hover:bg-gray-100 px-8 py-3 rounded-md text-lg font-medium transition-all duration-300 hover:scale-105"
             >
               Découvrir les admissions
             </Link>
             <Link 
               to="/contact"
-              className="inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-casa-blue px-8 py-3 rounded-md text-lg font-medium transition-colors"
+              className="inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-casa-blue px-8 py-3 rounded-md text-lg font-medium transition-all duration-300 hover:scale-105"
             >
               Nous contacter
             </Link>

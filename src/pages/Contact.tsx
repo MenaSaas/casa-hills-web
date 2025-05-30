@@ -77,7 +77,7 @@ const Contact = () => {
   const faqs = [
     {
       question: "Comment inscrire mon enfant à Casa Hills ?",
-      answer: "Pour inscrire votre enfant, vous devez d'abord remplir le formulaire de pré-inscription en ligne, puis prendre rendez-vous pour un entretien. Notre équipe vous guidera à travers toutes les étapes du processus d'admission."
+      answer: "Pour inscrire votre enfant, vous devez d'abord nous contacter par téléphone ou via notre formulaire de contact. Notre équipe vous guidera à travers toutes les étapes du processus d'admission."
     },
     {
       question: "Quels sont les frais de scolarité ?",
@@ -97,7 +97,7 @@ const Contact = () => {
     },
     {
       question: "Peut-on visiter l'école avant l'inscription ?",
-      answer: "Bien sûr ! Nous organisons des visites guidées tous les mardis et jeudis sur rendez-vous. Contactez-nous pour planifier votre visite."
+      answer: "Bien sûr ! Nous organisons des visites guidées sur rendez-vous. Contactez-nous pour planifier votre visite."
     }
   ];
 
@@ -145,22 +145,24 @@ const Contact = () => {
             ))}
           </div>
 
-          {/* Map Section */}
+          {/* Google Maps Section */}
           <div className="mb-16">
             <Card className="overflow-hidden">
               <CardHeader>
                 <CardTitle className="text-center">Localisation</CardTitle>
               </CardHeader>
               <CardContent className="p-0">
-                <div className="h-96 bg-gray-200 flex items-center justify-center">
-                  <div className="text-center text-gray-600">
-                    <MapPin className="h-12 w-12 mx-auto mb-4 text-casa-blue" />
-                    <p className="text-lg">Carte interactive Google Maps</p>
-                    <p className="text-sm mt-2">
-                      Complexe Résidentiel Albadr<br />
-                      Sidi Bernoussi, Casablanca, Maroc
-                    </p>
-                  </div>
+                <div className="h-96">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.5476421574387!2d-7.5311!3d33.6069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda7cd6c72b5b5af%3A0x123456789!2sComplexe%20R%C3%A9sidentiel%20Albadr%2C%20Sidi%20Bernoussi%2C%20Casablanca!5e0!3m2!1sfr!2sma!4v1639416589123!5m2!1sfr!2sma"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Localisation Casa Hills - Complexe Résidentiel Albadr, Sidi Bernoussi, Casablanca"
+                  />
                 </div>
               </CardContent>
             </Card>

@@ -10,9 +10,11 @@ const Footer = () => {
           {/* Logo et description */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-casa-blue to-casa-red rounded-full flex items-center justify-center">
-                <span className="text-white font-bold">CH</span>
-              </div>
+              <img 
+                src="/lovable-uploads/303c3f10-6f18-4cac-9f1c-0a591dc1f599.png" 
+                alt="Casa Hills Logo" 
+                className="w-12 h-12 object-contain"
+              />
               <div>
                 <h3 className="text-xl font-display font-bold">Casa Hills</h3>
                 <p className="text-sm text-gray-300">Une école, mille possibilités</p>

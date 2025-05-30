@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Mail } from 'lucide-react';
+import { Menu, X, Phone, Mail, Facebook, Instagram } from 'lucide-react';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -45,8 +45,14 @@ const Header = () => {
                 <span>G.scasahills@gmail.com</span>
               </div>
             </div>
-            <div className="hidden md:block">
-              <span>Horaires : Lun-Ven 8h00-17h00</span>
+            <div className="hidden md:flex items-center space-x-4">
+              <span className="mr-4">Horaires : Lun-Ven 8h00-17h00</span>
+              <a href="https://www.facebook.com/ecolecasahills" target="_blank" rel="noopener noreferrer">
+                <Facebook className="h-4 w-4 hover:text-blue-200 cursor-pointer" />
+              </a>
+              <a href="https://www.instagram.com/ecolecasahills/" target="_blank" rel="noopener noreferrer">
+                <Instagram className="h-4 w-4 hover:text-blue-200 cursor-pointer" />
+              </a>
             </div>
           </div>
         </div>
@@ -56,9 +62,11 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <Link to="/" className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-casa-blue to-casa-red rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-xl">CH</span>
-            </div>
+            <img 
+              src="/lovable-uploads/303c3f10-6f18-4cac-9f1c-0a591dc1f599.png" 
+              alt="Casa Hills Logo" 
+              className="w-16 h-16 object-contain"
+            />
             <div>
               <h1 className="text-2xl font-display font-bold text-gray-900">Casa Hills</h1>
               <p className="text-sm text-gray-600">Une école, mille possibilités</p>
