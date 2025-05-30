@@ -7,17 +7,17 @@ const HomeCarousel = () => {
 
   const slides = [
     {
-      image: "photo-1503454537195-1dcabb73ffb9",
+      image: "photo-1509062522246-3755977927d7",
       title: "Excellence Académique",
       subtitle: "Un enseignement de qualité dans un environnement bienveillant"
     },
     {
-      image: "photo-1497486751825-1233686d5d80",
+      image: "photo-1513475382585-d06e58bcb0e0",
       title: "Environnement Multiculturel",
       subtitle: "Diversité culturelle et ouverture sur le monde"
     },
     {
-      image: "photo-1544717297-fa95b6ee9643",
+      image: "photo-1571019613454-1cb2f99b2d8b",
       title: "Infrastructure Moderne",
       subtitle: "Équipements de dernière génération pour l'épanouissement"
     }
@@ -63,6 +63,7 @@ const HomeCarousel = () => {
               </p>
             </div>
           </div>
+          <div className="absolute inset-0 bg-casa-blue/10"></div>
         </div>
       ))}
       

@@ -98,10 +98,11 @@ const Primaire = () => {
             </div>
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1497486751825-1233686d5d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 alt="Élèves de primaire en activité de lecture"
                 className="rounded-2xl shadow-2xl"
               />
+              <div className="absolute inset-0 bg-casa-blue/10 rounded-2xl"></div>
             </div>
           </div>
         </div>
@@ -187,12 +188,13 @@ const Primaire = () => {
                 ))}
               </div>
             </div>
-            <div>
+            <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                src="https://images.unsplash.com/photo-1497486751825-1233686d5d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
                 alt="Salle de classe primaire moderne"
                 className="rounded-2xl shadow-lg"
               />
+              <div className="absolute inset-0 bg-white/10 rounded-2xl"></div>
             </div>
           </div>
         </div>

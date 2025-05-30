@@ -98,10 +98,11 @@ const Maternelle = () => {
             </div>
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                src="https://images.unsplash.com/photo-1576267423445-b2f96b2cd2d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 alt="Enfants de maternelle en activité créative"
                 className="rounded-2xl shadow-2xl"
               />
+              <div className="absolute inset-0 bg-casa-blue/10 rounded-2xl"></div>
             </div>
           </div>
         </div>
@@ -187,12 +188,13 @@ const Maternelle = () => {
                 ))}
               </div>
             </div>
-            <div>
+            <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
                 alt="Enfants jouant ensemble en maternelle"
                 className="rounded-2xl shadow-lg"
               />
+              <div className="absolute inset-0 bg-white/10 rounded-2xl"></div>
             </div>
           </div>
         </div>

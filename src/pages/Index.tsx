@@ -2,6 +2,7 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HomeCarousel from '@/components/HomeCarousel';
+import InstagramGallery from '@/components/InstagramGallery';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import { BookOpen, Globe, Users, Award, ArrowRight } from 'lucide-react';
@@ -35,28 +36,28 @@ const Index = () => {
       title: "Maternelle",
       description: "Éveil et développement dans un cadre sécurisant",
       age: "3-6 ans",
-      image: "photo-1503454537195-1dcabb73ffb9",
+      image: "photo-1576267423445-b2f96b2cd2d3",
       link: "/maternelle"
     },
     {
       title: "Primaire", 
       description: "Fondamentaux solides et épanouissement personnel",
       age: "6-11 ans",
-      image: "photo-1497486751825-1233686d5d80",
+      image: "photo-1509062522246-3755977927d7",
       link: "/primaire"
     },
     {
       title: "Collège",
       description: "Approfondissement et ouverture sur le monde",
       age: "11-15 ans", 
-      image: "photo-1544717297-fa95b6ee9643",
+      image: "photo-1513475382585-d06e58bcb0e0",
       link: "/college"
     },
     {
       title: "Lycée",
       description: "Excellence et préparation aux études supérieures",
       age: "15-18 ans",
-      image: "photo-1522661067900-9b6b4c892583",
+      image: "photo-1571019613454-1cb2f99b2d8b",
       link: "/lycee"
     }
   ];
@@ -159,12 +160,13 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {schoolLevels.map((level, index) => (
               <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 group animate-fade-in">
-                <div className="aspect-w-16 aspect-h-12">
+                <div className="aspect-w-16 aspect-h-12 relative">
                   <img
                     src={`https://images.unsplash.com/${level.image}?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80`}
                     alt={level.title}
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                   />
+                  <div className="absolute inset-0 bg-casa-blue/10"></div>
                 </div>
                 <CardContent className="p-6">
                   <div className="mb-2">
@@ -187,6 +189,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Instagram Gallery */}
+      <InstagramGallery />
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-casa-blue to-casa-red text-white">

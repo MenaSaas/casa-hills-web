@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -113,10 +112,11 @@ const Lycee = () => {
             </div>
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Lycéens en cours"
+                src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="Lycéens en préparation d'oral"
                 className="rounded-2xl shadow-2xl"
               />
+              <div className="absolute inset-0 bg-casa-blue/10 rounded-2xl"></div>
             </div>
           </div>
         </div>
@@ -268,13 +268,10 @@ const Lycee = () => {
             Le lycée Casa Hills : votre passerelle vers l'excellence académique 
             et la réussite professionnelle.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-casa-red hover:bg-gray-100">
-              Inscription lycée
-            </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-casa-red">
-              Rencontrer nos conseillers
-            </Button>
+          <div className="space-y-2 text-orange-100">
+            <p>Email : G.scasahills@gmail.com</p>
+            <p>Téléphone : 05 22 75 93 04 / 06 31 03 02 60</p>
+            <p>Adresse : Complexe Résidentiel Albadr, Sidi Bernoussi, Casablanca</p>
           </div>
         </div>
       </section>

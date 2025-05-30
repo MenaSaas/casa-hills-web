@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -99,10 +98,11 @@ const College = () => {
             </div>
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Collégiens en activité"
+                src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="Collégiens en activité collaborative"
                 className="rounded-2xl shadow-2xl"
               />
+              <div className="absolute inset-0 bg-casa-blue/10 rounded-2xl"></div>
             </div>
           </div>
         </div>
@@ -188,12 +188,13 @@ const College = () => {
                 ))}
               </div>
             </div>
-            <div>
+            <div className="relative">
               <img
                 src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
                 alt="Laboratoire de sciences"
                 className="rounded-2xl shadow-lg"
               />
+              <div className="absolute inset-0 bg-white/10 rounded-2xl"></div>
             </div>
           </div>
         </div>
@@ -209,13 +210,10 @@ const College = () => {
             Le collège Casa Hills : un tremplin vers l'excellence et la réussite 
             dans les études supérieures.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-casa-blue hover:bg-gray-100">
-              Inscription collège
-            </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-casa-blue">
-              Découvrir nos projets
-            </Button>
+          <div className="space-y-2 text-purple-100">
+            <p>Email : G.scasahills@gmail.com</p>
+            <p>Téléphone : 05 22 75 93 04 / 06 31 03 02 60</p>
+            <p>Adresse : Complexe Résidentiel Albadr, Sidi Bernoussi, Casablanca</p>
           </div>
         </div>
       </section>
