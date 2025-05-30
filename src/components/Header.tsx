@@ -2,26 +2,37 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Phone, Mail } from 'lucide-react';
+import { Menu, X, Phone, Mail, ChevronDown } from 'lucide-react';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from '@/components/ui/navigation-menu';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
-  const navigation = [
+  const mainNavigation = [
     { name: 'Accueil', href: '/' },
-    { name: 'Maternelle', href: '/maternelle' },
-    { name: 'Primaire', href: '/primaire' },
-    { name: 'Collège', href: '/college' },
-    { name: 'Lycée', href: '/lycee' },
+    { name: 'Notre École', href: '/philosophie' },
     { name: 'Admissions', href: '/admissions' },
-    { name: 'Notre Philosophie', href: '/philosophie' },
     { name: 'Actualités', href: '/actualites' },
     { name: 'Contact', href: '/contact' }
   ];
 
+  const cyclesNavigation = [
+    { name: 'Maternelle', href: '/maternelle', age: '3-6 ans', description: 'Éveil et développement' },
+    { name: 'Primaire', href: '/primaire', age: '6-11 ans', description: 'Fondamentaux solides' },
+    { name: 'Collège', href: '/college', age: '11-15 ans', description: 'Approfondissement' },
+    { name: 'Lycée', href: '/lycee', age: '15-18 ans', description: 'Excellence et préparation' }
+  ];
+
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
+    <header className="sticky top-0 z-50 bg-white shadow-md">
       {/* Top bar */}
       <div className="bg-casa-blue text-white py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,14 +68,62 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            {navigation.map((item) => (
+          <nav className="hidden lg:flex items-center space-x-1">
+            {mainNavigation.slice(0, 2).map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`text-sm font-medium transition-colors hover:text-casa-blue ${
+                className={`px-4 py-2 text-sm font-medium transition-colors hover:text-casa-blue rounded-md ${
                   location.pathname === item.href
-                    ? 'text-casa-blue border-b-2 border-casa-blue pb-1'
+                    ? 'text-casa-blue bg-blue-50'
+                    : 'text-gray-700'
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
+            
+            {/* Cycles dropdown */}
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-sm font-medium text-gray-700 hover:text-casa-blue">
+                    Cycles
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="w-80 p-4">
+                      <div className="grid grid-cols-1 gap-3">
+                        {cyclesNavigation.map((cycle) => (
+                          <Link
+                            key={cycle.name}
+                            to={cycle.href}
+                            className="block p-3 hover:bg-gray-50 rounded-lg transition-colors"
+                          >
+                            <div className="flex justify-between items-start">
+                              <div>
+                                <div className="font-semibold text-gray-900">{cycle.name}</div>
+                                <div className="text-sm text-gray-600">{cycle.description}</div>
+                              </div>
+                              <span className="text-xs bg-casa-blue text-white px-2 py-1 rounded">
+                                {cycle.age}
+                              </span>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+
+            {mainNavigation.slice(2).map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                className={`px-4 py-2 text-sm font-medium transition-colors hover:text-casa-blue rounded-md ${
+                  location.pathname === item.href
+                    ? 'text-casa-blue bg-blue-50'
                     : 'text-gray-700'
                 }`}
               >
@@ -73,8 +132,8 @@ const Header = () => {
             ))}
           </nav>
 
-          <div className="hidden lg:flex items-center space-x-4">
-            <Button variant="outline" size="sm">
+          <div className="hidden lg:flex items-center space-x-3">
+            <Button variant="outline" size="sm" className="border-casa-blue text-casa-blue hover:bg-casa-blue hover:text-white">
               Brochure
             </Button>
             <Button className="bg-casa-red hover:bg-red-700" size="sm">
@@ -84,7 +143,7 @@ const Header = () => {
 
           {/* Mobile menu button */}
           <button
-            className="lg:hidden"
+            className="lg:hidden p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
@@ -98,28 +157,47 @@ const Header = () => {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-white border-t">
-          <div className="px-4 py-2 space-y-2">
-            {navigation.map((item) => (
+        <div className="lg:hidden bg-white border-t shadow-lg">
+          <div className="px-4 py-2 space-y-1">
+            {mainNavigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`block py-2 text-sm font-medium ${
+                className={`block py-3 px-4 text-sm font-medium rounded-md ${
                   location.pathname === item.href
-                    ? 'text-casa-blue'
-                    : 'text-gray-700'
+                    ? 'text-casa-blue bg-blue-50'
+                    : 'text-gray-700 hover:bg-gray-50'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
-            <div className="pt-4 space-y-2">
-              <Button variant="outline" size="sm" className="w-full">
-                Brochure
+            
+            <div className="py-2">
+              <div className="text-sm font-medium text-gray-500 px-4 py-2">Cycles Scolaires</div>
+              {cyclesNavigation.map((cycle) => (
+                <Link
+                  key={cycle.name}
+                  to={cycle.href}
+                  className={`block py-2 px-8 text-sm ${
+                    location.pathname === cycle.href
+                      ? 'text-casa-blue'
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {cycle.name} ({cycle.age})
+                </Link>
+              ))}
+            </div>
+            
+            <div className="pt-4 border-t space-y-2">
+              <Button variant="outline" size="sm" className="w-full border-casa-blue text-casa-blue">
+                Télécharger la brochure
               </Button>
               <Button className="bg-casa-red hover:bg-red-700 w-full" size="sm">
-                Inscription
+                Demander une inscription
               </Button>
             </div>
           </div>
