@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -19,6 +18,7 @@ import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
 import MentionsLegales from "./pages/MentionsLegales";
 import PolitiqueCookies from "./pages/PolitiqueCookies";
 import NotFound from "./pages/NotFound";
+import SocialSidebar from "./components/SocialSidebar";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +45,7 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
         <WhatsAppFloat />
+        <SocialSidebar />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

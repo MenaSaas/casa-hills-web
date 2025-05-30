@@ -1,55 +1,63 @@
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Link } from 'react-router-dom';
-import { Users, Book, Heart, Sparkles, ArrowRight } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Baby, Heart, Palette, Music, BookOpen, Users, Star } from 'lucide-react';
 
 const Maternelle = () => {
-  const features = [
+  const activities = [
     {
-      icon: <Heart className="h-8 w-8 text-casa-blue" />,
-      title: "Environnement Bienveillant",
-      description: "Un cadre sécurisant et chaleureux où chaque enfant peut s'épanouir en toute confiance."
+      icon: <BookOpen className="h-8 w-8 text-casa-blue" />,
+      title: "Éveil au Langage",
+      description: "Développement du vocabulaire, expression orale et préparation à la lecture"
     },
     {
-      icon: <Sparkles className="h-8 w-8 text-casa-blue" />,
-      title: "Éveil et Créativité",
-      description: "Activités ludiques et créatives pour stimuler l'imagination et la curiosité naturelle."
+      icon: <Palette className="h-8 w-8 text-casa-blue" />,
+      title: "Activités Créatives",
+      description: "Dessin, peinture, collage et travaux manuels pour stimuler la créativité"
     },
     {
       icon: <Users className="h-8 w-8 text-casa-blue" />,
       title: "Socialisation",
-      description: "Apprentissage du vivre-ensemble et développement des compétences sociales."
+      description: "Apprentissage du vivre ensemble, partage et respect des règles"
     },
     {
-      icon: <Book className="h-8 w-8 text-casa-blue" />,
-      title: "Préparation au Primaire",
-      description: "Acquisition progressive des prérequis pour une transition harmonieuse vers le primaire."
+      icon: <Music className="h-8 w-8 text-casa-blue" />,
+      title: "Éveil Musical",
+      description: "Chansons, rythmique et découverte des instruments de musique"
     }
   ];
 
-  const activities = [
+  const strengths = [
     {
-      title: "Motricité",
-      description: "Développement des capacités motrices fines et globales",
-      image: "photo-1503454537195-1dcabb73ffb9"
+      icon: <Heart className="h-8 w-8 text-casa-red" />,
+      title: "Environnement Sécurisant",
+      description: "Espaces adaptés aux tout-petits avec un encadrement bienveillant et attentionné."
     },
     {
-      title: "Arts Plastiques",
-      description: "Expression créative à travers la peinture, le dessin et le modelage",
-      image: "photo-1544717297-fa95b6ee9643"
+      icon: <Baby className="h-8 w-8 text-casa-red" />,
+      title: "Respect du Rythme",
+      description: "Pédagogie adaptée à chaque enfant respectant son développement individuel."
     },
     {
-      title: "Éveil Musical",
-      description: "Découverte des sons, rythmes et premiers instruments",
-      image: "photo-1522661067900-9b6b4c892583"
+      icon: <Users className="h-8 w-8 text-casa-red" />,
+      title: "Équipe Spécialisée",
+      description: "Éducatrices formées à la petite enfance pour un accompagnement professionnel."
     },
     {
-      title: "Jeux Éducatifs",
-      description: "Apprentissage par le jeu et manipulation d'objets",
-      image: "photo-1497486751825-1233686d5d80"
+      icon: <Palette className="h-8 w-8 text-casa-red" />,
+      title: "Apprentissage Ludique",
+      description: "Méthodes pédagogiques basées sur le jeu pour apprendre en s'amusant."
     }
+  ];
+
+  const objectives = [
+    "Développer l'autonomie et la confiance en soi",
+    "Stimuler la curiosité et l'envie d'apprendre",
+    "Favoriser l'expression et la communication",
+    "Apprendre les règles de vie en société",
+    "Développer la motricité fine et globale",
+    "Préparer l'entrée en primaire"
   ];
 
   return (
@@ -57,33 +65,41 @@ const Maternelle = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-casa-blue to-purple-600 text-white">
-        <div className="absolute inset-0 bg-black/20"></div>
+      <section className="relative bg-gradient-to-br from-pink-300 via-purple-400 to-casa-blue text-white">
+        <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
-                3-6 ans
-              </span>
               <h1 className="text-5xl font-display font-bold mb-6">
                 Maternelle
               </h1>
-              <p className="text-xl mb-8 text-blue-100">
-                Premiers pas vers l'apprentissage dans un environnement adapté aux tout-petits.
-                Éveil, créativité et socialisation au cœur de notre pédagogie.
+              <p className="text-xl mb-4 text-pink-100">
+                Éveil et développement dans un cadre sécurisant
               </p>
-              <Link 
-                to="/contact"
-                className="inline-flex items-center bg-casa-red hover:bg-red-700 text-white px-8 py-3 rounded-md text-lg font-medium transition-colors"
-              >
-                Nous contacter
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
+              <p className="text-lg mb-8 text-pink-50 leading-relaxed">
+                La maternelle Casa Hills offre un premier contact avec l'école dans un 
+                environnement chaleureux et stimulant. Nous accompagnons chaque enfant 
+                dans ses premiers apprentissages avec douceur et bienveillance.
+              </p>
+              <div className="flex items-center space-x-6 text-pink-100">
+                <div className="text-center">
+                  <div className="text-3xl font-bold">3-6</div>
+                  <div className="text-sm">ans</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold">18</div>
+                  <div className="text-sm">élèves/classe</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold">3</div>
+                  <div className="text-sm">niveaux</div>
+                </div>
+              </div>
             </div>
             <div className="relative">
               <img
                 src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Enfants en classe de maternelle"
+                alt="Enfants de maternelle en activité créative"
                 className="rounded-2xl shadow-2xl"
               />
             </div>
@@ -91,57 +107,25 @@ const Maternelle = () => {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Activités */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-gray-900 mb-4">
-              Notre Approche Pédagogique
+              Nos Activités d'Éveil
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Une pédagogie adaptée aux besoins des jeunes enfants, favorisant leur développement global
-              dans un environnement stimulant et sécurisant.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <Card key={index} className="p-6 text-center hover:shadow-lg transition-shadow">
-                <CardContent className="p-0">
-                  <div className="mb-4 flex justify-center">{feature.icon}</div>
-                  <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                  <p className="text-gray-600">{feature.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Activities Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold text-gray-900 mb-4">
-              Activités et Apprentissages
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Un programme riche et varié pour accompagner chaque enfant dans son développement.
+              Des activités variées et adaptées pour favoriser l'épanouissement 
+              de chaque enfant dans toutes les dimensions de son développement.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {activities.map((activity, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow group">
-                <div className="aspect-w-16 aspect-h-12">
-                  <img
-                    src={`https://images.unsplash.com/${activity.image}?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80`}
-                    alt={activity.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{activity.title}</h3>
+              <Card key={index} className="p-6 text-center hover:shadow-lg transition-shadow">
+                <CardContent className="p-0">
+                  <div className="mb-4 flex justify-center">{activity.icon}</div>
+                  <h3 className="text-xl font-semibold mb-3">{activity.title}</h3>
                   <p className="text-gray-600">{activity.description}</p>
                 </CardContent>
               </Card>
@@ -150,94 +134,84 @@ const Maternelle = () => {
         </div>
       </section>
 
-      {/* Programme Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+      {/* Atouts */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-gray-900 mb-4">
-              Programme Détaillé
+              Les Atouts de Notre Maternelle
             </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Un cadre privilégié pour les premiers pas dans la scolarité.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="p-6">
-              <CardHeader className="p-0 mb-4">
-                <CardTitle className="text-xl text-casa-blue">Petite Section (3-4 ans)</CardTitle>
-              </CardHeader>
-              <CardContent className="p-0">
-                <ul className="space-y-2 text-gray-600">
-                  <li>• Adaptation à la vie en collectivité</li>
-                  <li>• Développement du langage oral</li>
-                  <li>• Activités sensorielles et motrices</li>
-                  <li>• Premiers graphismes</li>
-                  <li>• Découverte des couleurs et formes</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="p-6">
-              <CardHeader className="p-0 mb-4">
-                <CardTitle className="text-xl text-casa-blue">Moyenne Section (4-5 ans)</CardTitle>
-              </CardHeader>
-              <CardContent className="p-0">
-                <ul className="space-y-2 text-gray-600">
-                  <li>• Enrichissement du vocabulaire</li>
-                  <li>• Initiation à l'écriture</li>
-                  <li>• Découverte des nombres</li>
-                  <li>• Activités artistiques diversifiées</li>
-                  <li>• Développement de l'autonomie</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="p-6">
-              <CardHeader className="p-0 mb-4">
-                <CardTitle className="text-xl text-casa-blue">Grande Section (5-6 ans)</CardTitle>
-              </CardHeader>
-              <CardContent className="p-0">
-                <ul className="space-y-2 text-gray-600">
-                  <li>• Préparation à la lecture</li>
-                  <li>• Approche des mathématiques</li>
-                  <li>• Expression écrite simple</li>
-                  <li>• Projets collectifs</li>
-                  <li>• Préparation au CP</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="p-6">
-              <CardHeader className="p-0 mb-4">
-                <CardTitle className="text-xl text-casa-blue">Horaires & Organisation</CardTitle>
-              </CardHeader>
-              <CardContent className="p-0">
-                <ul className="space-y-2 text-gray-600">
-                  <li>• 8h00 - 12h00 : Activités matinales</li>
-                  <li>• 12h00 - 14h00 : Pause déjeuner</li>
-                  <li>• 14h00 - 16h30 : Activités après-midi</li>
-                  <li>• Sieste pour les petits</li>
-                  <li>• Encadrement personnalisé</li>
-                </ul>
-              </CardContent>
-            </Card>
+            {strengths.map((strength, index) => (
+              <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
+                <CardContent className="p-0">
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0">{strength.icon}</div>
+                    <div>
+                      <h3 className="text-xl font-semibold mb-3">{strength.title}</h3>
+                      <p className="text-gray-600">{strength.description}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-casa-blue to-purple-600 text-white">
+      {/* Objectifs */}
+      <section className="py-20 bg-casa-beige">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-display font-bold text-gray-900 mb-6">
+                Objectifs de la Maternelle
+              </h2>
+              <p className="text-lg text-gray-600 mb-8">
+                Notre maternelle vise l'épanouissement global de l'enfant en respectant 
+                son rythme naturel de développement et en préparant son entrée en primaire.
+              </p>
+              <div className="space-y-4">
+                {objectives.map((objective, index) => (
+                  <div key={index} className="flex items-center space-x-3">
+                    <div className="w-6 h-6 bg-casa-blue rounded-full flex items-center justify-center flex-shrink-0">
+                      <Star className="h-3 w-3 text-white" />
+                    </div>
+                    <span className="text-gray-700">{objective}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <img
+                src="https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                alt="Enfants jouant ensemble en maternelle"
+                className="rounded-2xl shadow-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section className="py-20 bg-gradient-to-r from-pink-400 to-purple-500 text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-display font-bold mb-6">
-            Accompagnons ensemble les premiers pas de votre enfant
+            Offrez le meilleur départ à votre enfant
           </h2>
-          <p className="text-xl mb-8 text-blue-50">
-            Notre équipe bienveillante est là pour accueillir votre enfant dans les meilleures conditions.
+          <p className="text-xl mb-8 text-pink-50">
+            La maternelle Casa Hills : un environnement bienveillant pour grandir et s'épanouir.
           </p>
-          <Link 
-            to="/contact"
-            className="inline-flex items-center bg-white text-casa-blue hover:bg-gray-100 px-8 py-3 rounded-md text-lg font-medium transition-colors"
-          >
-            Nous contacter
-          </Link>
+          <div className="space-y-2 text-pink-100">
+            <p>Email : G.scasahills@gmail.com</p>
+            <p>Téléphone : 05 22 75 93 04 / 06 31 03 02 60</p>
+            <p>Adresse : Complexe Résidentiel Albadr, Sidi Bernoussi, Casablanca</p>
+          </div>
         </div>
       </section>
 
