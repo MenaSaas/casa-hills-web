@@ -20,7 +20,7 @@ const Index = () => {
       icon: <Globe className="h-8 w-8 text-casa-blue" />,
       title: "Environnement Multiculturel",
       description: "Diversité culturelle enrichissante préparant nos élèves à un monde globalisé.",
-      stats: "15 nationalités"
+      stats: "International"
     },
     {
       icon: <Users className="h-8 w-8 text-casa-blue" />,
@@ -41,7 +41,7 @@ const Index = () => {
       title: "Maternelle",
       description: "Éveil et développement dans un cadre sécurisant",
       age: "3-6 ans",
-      image: "photo-1544776527-59eca25b6645",
+      image: "/lovable-uploads/93b73cb2-8d92-41b9-9e6b-5d9894170e5a.png",
       link: "/maternelle",
       highlights: ["Pédagogie Montessori", "Éveil artistique", "Programme trilingue"]
     },
@@ -204,7 +204,10 @@ const Index = () => {
               <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 group animate-fade-in border-casa-blue/20">
                 <div className="aspect-w-16 aspect-h-12 relative">
                   <img
-                    src={`https://images.unsplash.com/${level.image}?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80`}
+                    src={level.image.startsWith('/lovable-uploads/') 
+                      ? level.image 
+                      : `https://images.unsplash.com/${level.image}?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80`
+                    }
                     alt={level.title}
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                   />
