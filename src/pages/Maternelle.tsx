@@ -1,3 +1,4 @@
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -97,7 +98,7 @@ const Maternelle = () => {
             </div>
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                src="/lovable-uploads/93ae5039-6f46-4e41-a4be-312e5440d1c8.png"
                 alt="Enfants de maternelle en activité créative"
                 className="rounded-2xl shadow-2xl w-full h-96 object-cover"
               />

@@ -43,7 +43,7 @@ const Index = () => {
       age: "3-6 ans",
       image: "photo-1544776527-59eca25b6645",
       link: "/maternelle",
-      highlights: ["Pédagogie Montessori", "Éveil artistique", "Bilinguisme précoce"]
+      highlights: ["Pédagogie Montessori", "Éveil artistique", "Programme trilingue"]
     },
     {
       title: "Primaire", 
@@ -51,7 +51,7 @@ const Index = () => {
       age: "6-11 ans",
       image: "photo-1503676260728-1c00da094a0b",
       link: "/primaire",
-      highlights: ["Programme français", "Sciences expérimentales", "Sport et culture"]
+      highlights: ["Sciences expérimentales", "Sport et culture", "Langues vivantes"]
     },
     {
       title: "Collège",
@@ -60,6 +60,14 @@ const Index = () => {
       image: "photo-1522202176988-66273c2fd55f",
       link: "/college",
       highlights: ["Projets innovants", "Langues vivantes", "Orientation active"]
+    },
+    {
+      title: "Lycée",
+      description: "Excellence et préparation à l'avenir",
+      age: "15-18 ans", 
+      image: "photo-1523240795612-9a054b0db644",
+      link: "/lycee",
+      highlights: ["Filières spécialisées", "Préparation supérieur", "Taux de réussite 98%"]
     }
   ];
 
@@ -191,7 +199,7 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {schoolLevels.map((level, index) => (
               <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 group animate-fade-in border-casa-blue/20">
                 <div className="aspect-w-16 aspect-h-12 relative">

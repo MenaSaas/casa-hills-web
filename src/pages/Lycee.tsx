@@ -196,58 +196,6 @@ const Lycee = () => {
         </div>
       </section>
 
-      {/* Témoignages */}
-      <section className="py-20 bg-casa-beige">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold text-gray-900 mb-4">
-              Témoignages d'Anciens Élèves
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="p-6">
-              <CardContent className="p-0">
-                <p className="text-gray-700 mb-4 italic">
-                  "Casa Hills m'a donné les clés pour intégrer une grande école d'ingénieur. 
-                  L'accompagnement personnalisé a été décisif."
-                </p>
-                <div>
-                  <div className="font-semibold">Youssef Bennani</div>
-                  <div className="text-sm text-gray-600">Promotion 2022 - École Centrale Paris</div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="p-6">
-              <CardContent className="p-0">
-                <p className="text-gray-700 mb-4 italic">
-                  "Grâce à Casa Hills, j'ai développé mon esprit critique et ma confiance. 
-                  Aujourd'hui je réussis mes études de médecine."
-                </p>
-                <div>
-                  <div className="font-semibold">Leila Mansouri</div>
-                  <div className="text-sm text-gray-600">Promotion 2021 - Faculté de Médecine</div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="p-6">
-              <CardContent className="p-0">
-                <p className="text-gray-700 mb-4 italic">
-                  "L'ouverture internationale de Casa Hills m'a préparé à intégrer 
-                  une université canadienne prestigieuse."
-                </p>
-                <div>
-                  <div className="font-semibold">Omar Filali</div>
-                  <div className="text-sm text-gray-600">Promotion 2020 - Université McGill</div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
       <section className="py-20 bg-gradient-to-r from-casa-red to-orange-500 text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
