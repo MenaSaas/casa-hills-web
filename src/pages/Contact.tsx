@@ -172,7 +172,7 @@ const Contact = () => {
           <div className="text-center">
             <h3 className="text-2xl font-semibold mb-6">Suivez-nous</h3>
             <div className="flex justify-center space-x-6">
-              <a href="https://www.facebook.com/ecolecasahills" target="_blank" rel="noopener noreferrer" className="bg-casa-blue hover:bg-blue-700 text-white p-3 rounded-full transition-colors">
+              <a href="https://web.facebook.com/profile.php?id=100078730485495" target="_blank" rel="noopener noreferrer" className="bg-casa-blue hover:bg-blue-700 text-white p-3 rounded-full transition-colors">
                 <Facebook className="h-6 w-6" />
               </a>
               <a href="https://www.instagram.com/ecolecasahills/" target="_blank" rel="noopener noreferrer" className="bg-casa-red hover:bg-red-700 text-white p-3 rounded-full transition-colors">

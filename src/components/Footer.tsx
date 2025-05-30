@@ -25,7 +25,7 @@ const Footer = () => {
               dans un environnement multiculturel et bienveillant.
             </p>
             <div className="flex space-x-4">
-              <a href="https://www.facebook.com/ecolecasahills" target="_blank" rel="noopener noreferrer">
+              <a href="https://web.facebook.com/profile.php?id=100078730485495" target="_blank" rel="noopener noreferrer">
                 <Facebook className="h-5 w-5 text-gray-400 hover:text-white cursor-pointer" />
               </a>
               <a href="https://www.instagram.com/ecolecasahills/" target="_blank" rel="noopener noreferrer">
