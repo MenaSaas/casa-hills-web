@@ -60,7 +60,7 @@ const Contact = () => {
     {
       icon: <Phone className="h-6 w-6 text-casa-blue" />,
       title: "Téléphone",
-      content: "05 22 75 93 04\n06 31 03 02 60"
+      content: "05 22 75 93 04\n+212 6 63 51 44 32"
     },
     {
       icon: <Mail className="h-6 w-6 text-casa-blue" />,
