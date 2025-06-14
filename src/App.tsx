@@ -21,6 +21,10 @@ import MentionsLegales from "./pages/MentionsLegales";
 import PolitiqueCookies from "./pages/PolitiqueCookies";
 import NotFound from "./pages/NotFound";
 import SocialSidebar from "./components/SocialSidebar";
+import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminPhotos from "./pages/AdminPhotos";
+import AdminPhotoUpload from "./pages/AdminPhotoUpload";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +48,13 @@ const App = () => (
           <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
           <Route path="/mentions-legales" element={<MentionsLegales />} />
           <Route path="/politique-cookies" element={<PolitiqueCookies />} />
+          
+          {/* Admin Routes */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/photos" element={<AdminPhotos />} />
+          <Route path="/admin/photos/upload" element={<AdminPhotoUpload />} />
+          
           <Route path="*" element={<NotFound />} />
         </Routes>
         <WhatsAppFloat />

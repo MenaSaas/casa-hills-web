@@ -9,6 +9,33 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      admin_users: {
+        Row: {
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          last_login: string | null
+          password_hash: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          last_login?: string | null
+          password_hash: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          last_login?: string | null
+          password_hash?: string
+        }
+        Relationships: []
+      }
       contact_submissions: {
         Row: {
           created_at: string
@@ -74,6 +101,74 @@ export type Database = {
           phone?: string
         }
         Relationships: []
+      }
+      school_photos: {
+        Row: {
+          category: string
+          created_at: string
+          description: string | null
+          display_order: number | null
+          file_path: string
+          file_size: number | null
+          filename: string
+          height: number | null
+          id: string
+          is_active: boolean | null
+          mime_type: string | null
+          original_name: string
+          subcategory: string | null
+          title: string | null
+          updated_at: string
+          uploaded_by: string | null
+          width: number | null
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          description?: string | null
+          display_order?: number | null
+          file_path: string
+          file_size?: number | null
+          filename: string
+          height?: number | null
+          id?: string
+          is_active?: boolean | null
+          mime_type?: string | null
+          original_name: string
+          subcategory?: string | null
+          title?: string | null
+          updated_at?: string
+          uploaded_by?: string | null
+          width?: number | null
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string | null
+          display_order?: number | null
+          file_path?: string
+          file_size?: number | null
+          filename?: string
+          height?: number | null
+          id?: string
+          is_active?: boolean | null
+          mime_type?: string | null
+          original_name?: string
+          subcategory?: string | null
+          title?: string | null
+          updated_at?: string
+          uploaded_by?: string | null
+          width?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "school_photos_uploaded_by_fkey"
+            columns: ["uploaded_by"]
+            isOneToOne: false
+            referencedRelation: "admin_users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
