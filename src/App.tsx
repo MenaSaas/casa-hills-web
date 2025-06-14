@@ -31,27 +31,26 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <LeadCaptureProvider>
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/philosophie" element={<Philosophie />} />
-            <Route path="/maternelle" element={<Maternelle />} />
-            <Route path="/primaire" element={<Primaire />} />
-            <Route path="/college" element={<College />} />
-            <Route path="/lycee" element={<Lycee />} />
-            <Route path="/admissions" element={<Admissions />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/actualites" element={<Actualites />} />
-            <Route path="/mentions-legales" element={<MentionsLegales />} />
-            <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
-            <Route path="/politique-cookies" element={<PolitiqueCookies />} />
-            <Route path="/admin/images" element={<AdminImages />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <SocialSidebar />
-          <WhatsAppFloat />
-        </LeadCaptureProvider>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/philosophie" element={<Philosophie />} />
+          <Route path="/maternelle" element={<Maternelle />} />
+          <Route path="/primaire" element={<Primaire />} />
+          <Route path="/college" element={<College />} />
+          <Route path="/lycee" element={<Lycee />} />
+          <Route path="/admissions" element={<Admissions />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/actualites" element={<Actualites />} />
+          <Route path="/mentions-legales" element={<MentionsLegales />} />
+          <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
+          <Route path="/politique-cookies" element={<PolitiqueCookies />} />
+          <Route path="/admin/images" element={<AdminImages />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <SocialSidebar />
+        <WhatsAppFloat />
+        <LeadCaptureProvider />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
