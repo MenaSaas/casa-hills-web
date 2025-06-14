@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import ImageUploader from './ImageUploader';
 import ImageGallery from './ImageGallery';
+import ImageMigrationHelper from './ImageMigrationHelper';
 
 const ImageManager = () => {
   const [selectedFolder, setSelectedFolder] = useState<string>('');
@@ -34,43 +35,56 @@ const ImageManager = () => {
         </CardHeader>
       </Card>
 
-      <Tabs value={selectedFolder} onValueChange={setSelectedFolder}>
-        <TabsList className="grid w-full grid-cols-4 lg:grid-cols-7">
-          {folders.map((folder) => (
-            <TabsTrigger key={folder.id} value={folder.id} className="text-xs">
-              {folder.name}
-            </TabsTrigger>
-          ))}
+      <Tabs defaultValue="migration">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="migration">Migration d'Images</TabsTrigger>
+          <TabsTrigger value="manager">Gestionnaire</TabsTrigger>
         </TabsList>
 
-        {folders.map((folder) => (
-          <TabsContent key={folder.id} value={folder.id} className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Dossier: {folder.name}</CardTitle>
-                <CardDescription>{folder.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ImageUploader
-                  folder={folder.id || undefined}
-                  onUploadSuccess={handleUploadSuccess}
-                />
-              </CardContent>
-            </Card>
+        <TabsContent value="migration" className="space-y-6">
+          <ImageMigrationHelper />
+        </TabsContent>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Images dans ce dossier</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ImageGallery 
-                  folder={folder.id || undefined}
-                  key={`gallery-${folder.id}`}
-                />
-              </CardContent>
-            </Card>
-          </TabsContent>
-        ))}
+        <TabsContent value="manager" className="space-y-6">
+          <Tabs value={selectedFolder} onValueChange={setSelectedFolder}>
+            <TabsList className="grid w-full grid-cols-4 lg:grid-cols-7">
+              {folders.map((folder) => (
+                <TabsTrigger key={folder.id} value={folder.id} className="text-xs">
+                  {folder.name}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+
+            {folders.map((folder) => (
+              <TabsContent key={folder.id} value={folder.id} className="space-y-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg">Dossier: {folder.name}</CardTitle>
+                    <CardDescription>{folder.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ImageUploader
+                      folder={folder.id || undefined}
+                      onUploadSuccess={handleUploadSuccess}
+                    />
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg">Images dans ce dossier</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ImageGallery 
+                      folder={folder.id || undefined}
+                      key={`gallery-${folder.id}`}
+                    />
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            ))}
+          </Tabs>
+        </TabsContent>
       </Tabs>
     </div>
   );
