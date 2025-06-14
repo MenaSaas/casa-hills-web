@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -83,7 +82,7 @@ const MentionsLegales = () => {
               <div className="space-y-4 text-gray-700">
                 <p><strong>Dénomination :</strong> École Casa Hills</p>
                 <p><strong>Adresse :</strong> Complexe Résidentiel Albadr, Sidi Bernoussi, Casablanca, Maroc</p>
-                <p><strong>Téléphone :</strong> 05 22 75 93 04 / 06 31 03 02 60</p>
+                <p><strong>Téléphone :</strong> 05 22 75 93 04 / +212 6 63 51 44 32</p>
                 <p><strong>Email :</strong> G.scasahills@gmail.com</p>
                 <p><strong>Secteur d'activité :</strong> Enseignement privé</p>
               </div>
@@ -148,7 +147,7 @@ const MentionsLegales = () => {
             </p>
             <div className="space-y-2 text-casa-blue font-medium">
               <p>Email : G.scasahills@gmail.com</p>
-              <p>Téléphone : 05 22 75 93 04 / 06 31 03 02 60</p>
+              <p>Téléphone : 05 22 75 93 04 / +212 6 63 51 44 32</p>
               <p>Adresse : Complexe Résidentiel Albadr, Sidi Bernoussi, Casablanca</p>
             </div>
           </div>
