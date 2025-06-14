@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -172,7 +171,7 @@ const Admissions = () => {
               <div className="space-y-2 text-sm">
                 <div className="flex items-center justify-center space-x-2">
                   <Phone className="h-4 w-4 text-casa-blue" />
-                  <span>05 22 75 93 04 / 06 31 03 02 60</span>
+                  <span>05 22 75 93 04 / +212 6 63 51 44 32</span>
                 </div>
                 <div className="flex items-center justify-center space-x-2">
                   <Mail className="h-4 w-4 text-casa-blue" />
