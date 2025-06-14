@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -12,9 +11,11 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const Contact = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -24,7 +25,7 @@ const Contact = () => {
     privacyAccepted: false
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.privacyAccepted) {
@@ -36,19 +37,53 @@ const Contact = () => {
       return;
     }
 
-    toast({
-      title: "Message envoyé avec succès",
-      description: "Merci pour votre message. Nous vous répondrons dans les plus brefs délais.",
-    });
-    
-    setFormData({
-      fullName: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
-      privacyAccepted: false
-    });
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert({
+          full_name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+          privacy_accepted: formData.privacyAccepted
+        });
+
+      if (error) {
+        console.error('Erreur lors de l\'enregistrement:', error);
+        toast({
+          title: "Erreur",
+          description: "Une erreur est survenue lors de l'envoi de votre message. Veuillez réessayer.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      toast({
+        title: "Message envoyé avec succès",
+        description: "Merci pour votre message. Nous vous répondrons dans les plus brefs délais.",
+      });
+      
+      setFormData({
+        fullName: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: '',
+        privacyAccepted: false
+      });
+    } catch (error) {
+      console.error('Erreur inattendue:', error);
+      toast({
+        title: "Erreur",
+        description: "Une erreur inattendue est survenue. Veuillez réessayer.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -205,6 +240,7 @@ const Contact = () => {
                     value={formData.fullName}
                     onChange={(e) => setFormData({...formData, fullName: e.target.value})}
                     required
+                    disabled={isSubmitting}
                     className="mt-2"
                     placeholder="Votre nom complet"
                   />
@@ -217,6 +253,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                     required
+                    disabled={isSubmitting}
                     className="mt-2"
                     placeholder="votre.email@exemple.com"
                   />
@@ -232,13 +269,18 @@ const Contact = () => {
                     value={formData.phone}
                     onChange={(e) => setFormData({...formData, phone: e.target.value})}
                     required
+                    disabled={isSubmitting}
                     className="mt-2"
                     placeholder="+212 6XX XX XX XX"
                   />
                 </div>
                 <div>
                   <Label htmlFor="subject">Objet de la demande *</Label>
-                  <Select onValueChange={(value) => setFormData({...formData, subject: value})}>
+                  <Select 
+                    onValueChange={(value) => setFormData({...formData, subject: value})}
+                    disabled={isSubmitting}
+                    value={formData.subject}
+                  >
                     <SelectTrigger className="mt-2">
                       <SelectValue placeholder="Sélectionnez un objet" />
                     </SelectTrigger>
@@ -259,6 +301,7 @@ const Contact = () => {
                   value={formData.message}
                   onChange={(e) => setFormData({...formData, message: e.target.value})}
                   required
+                  disabled={isSubmitting}
                   placeholder="Décrivez votre demande en détail..."
                   className="mt-2"
                   rows={6}
@@ -271,15 +314,21 @@ const Contact = () => {
                   checked={formData.privacyAccepted}
                   onCheckedChange={(checked) => setFormData({...formData, privacyAccepted: checked as boolean})}
                   required
+                  disabled={isSubmitting}
                 />
                 <Label htmlFor="privacy" className="text-sm leading-relaxed">
                   J'accepte la <a href="/politique-confidentialite" className="text-casa-blue hover:underline">politique de confidentialité</a> de l'école Casa Hills. *
                 </Label>
               </div>
 
-              <Button type="submit" className="w-full bg-casa-blue hover:bg-blue-700" size="lg">
+              <Button 
+                type="submit" 
+                className="w-full bg-casa-blue hover:bg-blue-700" 
+                size="lg"
+                disabled={isSubmitting}
+              >
                 <Send className="mr-2 h-5 w-5" />
-                Envoyer le message
+                {isSubmitting ? 'Envoi en cours...' : 'Envoyer le message'}
               </Button>
             </form>
           </Card>
