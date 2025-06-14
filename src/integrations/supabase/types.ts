@@ -42,6 +42,39 @@ export type Database = {
         }
         Relationships: []
       }
+      lead_captures: {
+        Row: {
+          child_age: number
+          child_name: string
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          level_interest: string
+          phone: string
+        }
+        Insert: {
+          child_age: number
+          child_name: string
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          level_interest: string
+          phone: string
+        }
+        Update: {
+          child_age?: number
+          child_name?: string
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          level_interest?: string
+          phone?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
