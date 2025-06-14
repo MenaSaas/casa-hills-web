@@ -211,7 +211,7 @@ const Primaire = () => {
           </p>
           <div className="space-y-2 text-green-100">
             <p>Email : G.scasahills@gmail.com</p>
-            <p>Téléphone : 05 22 75 93 04 / 06 31 03 02 60</p>
+            <p>Téléphone : 05 22 75 93 04 / 06 63 51 44 32</p>
             <p>Adresse : Complexe Résidentiel Albadr, Sidi Bernoussi, Casablanca</p>
           </div>
         </div>

@@ -1,3 +1,4 @@
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -212,7 +213,7 @@ const College = () => {
           </p>
           <div className="space-y-2 text-purple-100">
             <p>Email : G.scasahills@gmail.com</p>
-            <p>Téléphone : 05 22 75 93 04 / 06 31 03 02 60</p>
+            <p>Téléphone : 05 22 75 93 04 / 06 63 51 44 32</p>
             <p>Adresse : Complexe Résidentiel Albadr, Sidi Bernoussi, Casablanca</p>
           </div>
         </div>
