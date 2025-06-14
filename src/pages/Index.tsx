@@ -2,11 +2,12 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HomeCarousel from '@/components/HomeCarousel';
+import SchoolLevelsSection from '@/components/SchoolLevelsSection';
 import CookieBanner from '@/components/CookieBanner';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { BookOpen, Globe, Users, Award, ArrowRight, Star, Trophy, Heart, CheckCircle } from 'lucide-react';
+import { BookOpen, Globe, Users, Award, CheckCircle, Star, Trophy, Heart } from 'lucide-react';
 
 const Index = () => {
   const features = [
@@ -33,41 +34,6 @@ const Index = () => {
       title: "Équipements Modernes",
       description: "Laboratoires, bibliothèque, espaces sportifs et technologiques de dernière génération.",
       stats: "100% équipé"
-    }
-  ];
-
-  const schoolLevels = [
-    {
-      title: "Maternelle",
-      description: "Éveil et développement dans un cadre sécurisant",
-      age: "3-6 ans",
-      image: "/lovable-uploads/93b73cb2-8d92-41b9-9e6b-5d9894170e5a.png",
-      link: "/maternelle",
-      highlights: ["Pédagogie Montessori", "Éveil artistique", "Programme trilingue"]
-    },
-    {
-      title: "Primaire", 
-      description: "Fondamentaux solides et épanouissement personnel",
-      age: "6-11 ans",
-      image: "photo-1503676260728-1c00da094a0b",
-      link: "/primaire",
-      highlights: ["Sciences expérimentales", "Sport et culture", "Langues vivantes"]
-    },
-    {
-      title: "Collège",
-      description: "Approfondissement et ouverture sur le monde",
-      age: "11-15 ans", 
-      image: "photo-1522202176988-66273c2fd55f",
-      link: "/college",
-      highlights: ["Projets innovants", "Langues vivantes", "Orientation active"]
-    },
-    {
-      title: "Lycée",
-      description: "Excellence et préparation à l'avenir",
-      age: "15-18 ans", 
-      image: "photo-1523240795612-9a054b0db644",
-      link: "/lycee",
-      highlights: ["Filières spécialisées", "Préparation supérieur", "Taux de réussite 98%"]
     }
   ];
 
@@ -186,62 +152,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* School Levels - Enhanced */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold text-casa-blue mb-4 animate-fade-in">
-              Nos Cycles Scolaires
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in">
-              Un parcours éducatif complet et personnalisé, adapté à chaque étape 
-              du développement de votre enfant.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {schoolLevels.map((level, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 group animate-fade-in border-casa-blue/20">
-                <div className="aspect-w-16 aspect-h-12 relative">
-                  <img
-                    src={level.image.startsWith('/lovable-uploads/') 
-                      ? level.image 
-                      : `https://images.unsplash.com/${level.image}?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80`
-                    }
-                    alt={level.title}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-casa-blue/10"></div>
-                  <div className="absolute top-4 right-4">
-                    <span className="text-xs font-bold text-white bg-casa-red/80 backdrop-blur-sm px-3 py-1 rounded-full">
-                      {level.age}
-                    </span>
-                  </div>
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 text-casa-blue">{level.title}</h3>
-                  <p className="text-gray-600 mb-4">{level.description}</p>
-                  <div className="space-y-2 mb-4">
-                    {level.highlights.map((highlight, i) => (
-                      <div key={i} className="flex items-center text-sm text-gray-600">
-                        <CheckCircle className="h-4 w-4 text-casa-red mr-2" />
-                        {highlight}
-                      </div>
-                    ))}
-                  </div>
-                  <Link 
-                    to={level.link}
-                    className="inline-flex items-center text-casa-blue hover:text-casa-red font-medium transition-colors group"
-                  >
-                    En savoir plus
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* School Levels - Now using dynamic component */}
+      <SchoolLevelsSection />
 
       {/* Enhanced CTA Section */}
       <section className="py-20 bg-gradient-to-r from-casa-blue to-casa-red text-white relative overflow-hidden">
