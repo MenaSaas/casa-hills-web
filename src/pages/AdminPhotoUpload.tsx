@@ -1,4 +1,3 @@
-
 import { useState, useCallback } from 'react';
 import { useAdminAuth } from '@/hooks/useAdminAuth';
 import { Button } from '@/components/ui/button';
@@ -35,18 +34,76 @@ const AdminPhotoUpload = () => {
   const [isUploading, setIsUploading] = useState(false);
 
   const categories = [
-    { value: 'carousel', label: 'Carousel principal', maxFiles: 3 },
-    { value: 'classrooms', label: 'Salles de classe' },
-    { value: 'facilities', label: 'Installations' },
-    { value: 'activities', label: 'Activités' },
-    { value: 'exterior', label: 'Espaces extérieurs' }
+    { 
+      value: 'carousel', 
+      label: 'Carousel principal (Page d\'accueil)', 
+      description: 'Images principales du carousel de la page d\'accueil (max 5 recommandées)',
+      maxFiles: 5 
+    },
+    { 
+      value: 'school-levels', 
+      label: 'Cycles scolaires (Page d\'accueil)', 
+      description: 'Images représentant chaque cycle scolaire sur la page d\'accueil'
+    },
+    { 
+      value: 'news', 
+      label: 'Actualités et événements', 
+      description: 'Photos pour la section actualités et événements de l\'école'
+    },
+    { 
+      value: 'philosophy', 
+      label: 'Philosophie - Activités pédagogiques', 
+      description: 'Images d\'activités pédagogiques pour la page Philosophie'
+    },
+    { 
+      value: 'campus', 
+      label: 'Espaces du campus', 
+      description: 'Photos des différents espaces extérieurs et intérieurs du campus'
+    },
+    { 
+      value: 'facilities', 
+      label: 'Installations et équipements', 
+      description: 'Photos des installations spécialisées et équipements de l\'école'
+    }
   ];
 
   const subcategories = {
-    classrooms: ['Maternelle', 'Primaire', 'Collège', 'Lycée'],
-    facilities: ['Bibliothèque', 'Laboratoires', 'Cantine', 'Gymnase'],
-    activities: ['Sport', 'Arts', 'Sciences', 'Événements'],
-    exterior: ['Cour de récréation', 'Jardins', 'Terrain de sport', 'Entrée']
+    'school-levels': [
+      'Maternelle',
+      'Primaire', 
+      'Collège',
+      'Lycée'
+    ],
+    'news': [
+      'Événements scolaires',
+      'Concours et prix',
+      'Sorties pédagogiques',
+      'Fêtes et célébrations',
+      'Projets étudiants'
+    ],
+    'philosophy': [
+      'Sciences expérimentales',
+      'Arts et créativité',
+      'Sport et activités physiques',
+      'Langues et cultures',
+      'Projets collaboratifs'
+    ],
+    'campus': [
+      'Cours de récréation',
+      'Jardins et espaces verts',
+      'Terrains de sport',
+      'Entrée principale',
+      'Espaces de détente'
+    ],
+    'facilities': [
+      'Bibliothèque',
+      'Laboratoires de sciences',
+      'Salles informatique',
+      'Cantine et restauration',
+      'Gymnase et sport',
+      'Salles de classe',
+      'Auditorium'
+    ]
   };
 
   const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,7 +118,7 @@ const AdminPhotoUpload = () => {
             preview: event.target?.result as string,
             title: file.name.replace(/\.[^/.]+$/, ''),
             description: '',
-            category: 'facilities',
+            category: 'campus',
             subcategory: ''
           };
           setUploadFiles(prev => [...prev, newFile]);
@@ -174,7 +231,7 @@ const AdminPhotoUpload = () => {
                   Ajouter des Photos
                 </h1>
                 <p className="text-gray-600">
-                  Importer et organiser de nouvelles photos
+                  Importer et organiser de nouvelles photos par section du site
                 </p>
               </div>
             </div>
@@ -210,6 +267,26 @@ const AdminPhotoUpload = () => {
               <p className="text-xs text-gray-500">
                 PNG, JPG, JPEG jusqu'à 10MB chacun
               </p>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Categories Guide */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle>Guide des catégories</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {categories.map((category) => (
+                <div key={category.value} className="p-4 border rounded-lg">
+                  <h4 className="font-semibold text-casa-blue mb-2">{category.label}</h4>
+                  <p className="text-sm text-gray-600">{category.description}</p>
+                  {category.maxFiles && (
+                    <p className="text-xs text-casa-red mt-2">Max recommandé: {category.maxFiles} photos</p>
+                  )}
+                </div>
+              ))}
             </div>
           </CardContent>
         </Card>
@@ -282,10 +359,13 @@ const AdminPhotoUpload = () => {
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                           <div>
-                            <Label htmlFor={`category-${index}`}>Catégorie</Label>
+                            <Label htmlFor={`category-${index}`}>Section du site</Label>
                             <Select
                               value={uploadFile.category}
-                              onValueChange={(value) => updateFile(index, 'category', value)}
+                              onValueChange={(value) => {
+                                updateFile(index, 'category', value);
+                                updateFile(index, 'subcategory', ''); // Reset subcategory
+                              }}
                             >
                               <SelectTrigger>
                                 <SelectValue />

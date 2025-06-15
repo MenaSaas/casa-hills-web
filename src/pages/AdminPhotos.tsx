@@ -45,11 +45,12 @@ const AdminPhotos = () => {
 
   const categories = [
     { value: 'all', label: 'Toutes les catégories' },
-    { value: 'carousel', label: 'Carousel principal' },
-    { value: 'classrooms', label: 'Salles de classe' },
-    { value: 'facilities', label: 'Installations' },
-    { value: 'activities', label: 'Activités' },
-    { value: 'exterior', label: 'Espaces extérieurs' }
+    { value: 'carousel', label: 'Carousel principal (Page d\'accueil)' },
+    { value: 'school-levels', label: 'Cycles scolaires (Page d\'accueil)' },
+    { value: 'news', label: 'Actualités et événements' },
+    { value: 'philosophy', label: 'Philosophie - Activités pédagogiques' },
+    { value: 'campus', label: 'Espaces du campus' },
+    { value: 'facilities', label: 'Installations et équipements' }
   ];
 
   useEffect(() => {
@@ -168,6 +169,11 @@ const AdminPhotos = () => {
     return data.publicUrl;
   };
 
+  const getCategoryDisplayName = (category: string) => {
+    const categoryObj = categories.find(c => c.value === category);
+    return categoryObj?.label || category;
+  };
+
   if (isLoading || isLoadingPhotos) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -227,7 +233,7 @@ const AdminPhotos = () => {
                 />
               </div>
             </div>
-            <div className="sm:w-64">
+            <div className="sm:w-80">
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                 <SelectTrigger>
                   <Filter className="h-4 w-4 mr-2" />
@@ -256,12 +262,19 @@ const AdminPhotos = () => {
                   className="w-full h-48 object-cover"
                 />
                 <div className="absolute top-2 left-2">
-                  <Badge variant={photo.category === 'carousel' ? 'destructive' : 'secondary'}>
-                    {categories.find(c => c.value === photo.category)?.label || photo.category}
+                  <Badge variant={photo.category === 'carousel' ? 'destructive' : 'secondary'} className="text-xs">
+                    {getCategoryDisplayName(photo.category)}
                   </Badge>
                 </div>
-                <div className="absolute top-2 right-2">
-                  <Badge variant={photo.is_active ? 'success' : 'secondary'}>
+                {photo.subcategory && (
+                  <div className="absolute top-2 right-2">
+                    <Badge variant="outline" className="text-xs bg-white/90">
+                      {photo.subcategory}
+                    </Badge>
+                  </div>
+                )}
+                <div className="absolute bottom-2 right-2">
+                  <Badge variant={photo.is_active ? 'success' : 'secondary'} className="text-xs">
                     {photo.is_active ? 'Actif' : 'Inactif'}
                   </Badge>
                 </div>
