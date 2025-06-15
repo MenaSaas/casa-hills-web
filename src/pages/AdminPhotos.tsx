@@ -1,23 +1,11 @@
+
 import { useState, useEffect } from 'react';
 import { useAdminAuth } from '@/hooks/useAdminAuth';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import {
-  ArrowLeft,
-  Search,
-  Filter,
-  Upload,
-  Edit,
-  Trash2,
-  Eye,
-  EyeOff
-} from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { AdminPhotosHeader } from '@/components/admin/AdminPhotosHeader';
+import { PhotoFilters } from '@/components/admin/PhotoFilters';
+import { PhotosGrid } from '@/components/admin/PhotosGrid';
 
 interface Photo {
   id: string;
@@ -187,156 +175,25 @@ const AdminPhotos = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center gap-4">
-              <Link to="/admin/dashboard">
-                <Button variant="outline" size="sm">
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  Retour
-                </Button>
-              </Link>
-              <div>
-                <h1 className="text-2xl font-display font-bold text-casa-blue">
-                  Gestion des Photos
-                </h1>
-                <p className="text-gray-600">
-                  {filteredPhotos.length} photo(s) trouvée(s)
-                </p>
-              </div>
-            </div>
-            <Link to="/admin/photos/upload">
-              <Button className="bg-casa-blue hover:bg-blue-700">
-                <Upload className="h-4 w-4 mr-2" />
-                Ajouter des photos
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
+      <AdminPhotosHeader photoCount={filteredPhotos.length} />
 
-      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* Filters */}
-        <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-1">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                <Input
-                  placeholder="Rechercher par nom, titre ou description..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
-            </div>
-            <div className="sm:w-80">
-              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger>
-                  <Filter className="h-4 w-4 mr-2" />
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {categories.map(category => (
-                    <SelectItem key={category.value} value={category.value}>
-                      {category.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-        </div>
+        <PhotoFilters
+          searchTerm={searchTerm}
+          selectedCategory={selectedCategory}
+          onSearchChange={setSearchTerm}
+          onCategoryChange={setSelectedCategory}
+        />
 
-        {/* Photos Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredPhotos.map((photo) => (
-            <Card key={photo.id} className={`overflow-hidden ${!photo.is_active ? 'opacity-60' : ''}`}>
-              <div className="aspect-w-16 aspect-h-12 relative">
-                <img
-                  src={getPhotoUrl(photo.file_path)}
-                  alt={photo.title || photo.original_name}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="absolute top-2 left-2">
-                  <Badge variant={photo.category === 'carousel' ? 'destructive' : 'secondary'} className="text-xs">
-                    {getCategoryDisplayName(photo.category)}
-                  </Badge>
-                </div>
-                {photo.subcategory && (
-                  <div className="absolute top-2 right-2">
-                    <Badge variant="outline" className="text-xs bg-white/90">
-                      {photo.subcategory}
-                    </Badge>
-                  </div>
-                )}
-                <div className="absolute bottom-2 right-2">
-                  <Badge variant={photo.is_active ? 'success' : 'secondary'} className="text-xs">
-                    {photo.is_active ? 'Actif' : 'Inactif'}
-                  </Badge>
-                </div>
-              </div>
-              <CardContent className="p-4">
-                <h3 className="font-semibold text-sm mb-2 truncate">
-                  {photo.title || photo.original_name}
-                </h3>
-                {photo.description && (
-                  <p className="text-xs text-gray-600 mb-3 line-clamp-2">
-                    {photo.description}
-                  </p>
-                )}
-                <div className="flex justify-between items-center">
-                  <div className="flex gap-2">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => togglePhotoStatus(photo.id, photo.is_active)}
-                    >
-                      {photo.is_active ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => deletePhoto(photo.id, photo.file_path)}
-                      className="text-red-600 hover:text-red-700"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
-                  <span className="text-xs text-gray-500">
-                    {Math.round((photo.file_size || 0) / 1024)} KB
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {filteredPhotos.length === 0 && (
-          <div className="text-center py-12">
-            <div className="text-gray-500 mb-4">
-              <Upload className="h-12 w-12 mx-auto mb-4" />
-              <p className="text-lg font-medium">Aucune photo trouvée</p>
-              <p className="text-sm">
-                {searchTerm || selectedCategory !== 'all'
-                  ? 'Essayez de modifier vos filtres de recherche'
-                  : 'Commencez par ajouter des photos à votre galerie'
-                }
-              </p>
-            </div>
-            {(!searchTerm && selectedCategory === 'all') && (
-              <Link to="/admin/photos/upload">
-                <Button className="bg-casa-blue hover:bg-blue-700">
-                  <Upload className="h-4 w-4 mr-2" />
-                  Ajouter des photos
-                </Button>
-              </Link>
-            )}
-          </div>
-        )}
+        <PhotosGrid
+          photos={filteredPhotos}
+          searchTerm={searchTerm}
+          selectedCategory={selectedCategory}
+          onToggleStatus={togglePhotoStatus}
+          onDelete={deletePhoto}
+          getPhotoUrl={getPhotoUrl}
+          getCategoryDisplayName={getCategoryDisplayName}
+        />
       </div>
     </div>
   );
