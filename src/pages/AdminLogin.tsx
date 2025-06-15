@@ -21,14 +21,23 @@ const AdminLogin = () => {
     setIsLoading(true);
 
     try {
-      // Verify admin credentials
-      const { data, error } = await supabase
-        .from('admin_users')
-        .select('*')
-        .eq('email', email)
-        .single();
+      // Utiliser la fonction sécurisée pour vérifier les identifiants
+      const { data, error } = await supabase.rpc('verify_admin_password', {
+        input_email: email,
+        input_password: password
+      });
 
-      if (error || !data) {
+      if (error) {
+        console.error('Erreur de vérification:', error);
+        toast({
+          title: "Erreur de connexion",
+          description: "Une erreur est survenue lors de la vérification",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      if (!data || data.length === 0) {
         toast({
           title: "Erreur de connexion",
           description: "Email ou mot de passe incorrect",
@@ -37,28 +46,30 @@ const AdminLogin = () => {
         return;
       }
 
-      // Store admin session in localStorage
+      const adminData = data[0];
+
+      // Stocker la session admin dans localStorage
       localStorage.setItem('admin_session', JSON.stringify({
-        id: data.id,
-        email: data.email,
-        full_name: data.full_name,
+        id: adminData.admin_id,
+        email: adminData.admin_email,
+        full_name: adminData.admin_full_name,
         loginTime: new Date().toISOString()
       }));
 
-      // Update last login
+      // Mettre à jour la dernière connexion
       await supabase
         .from('admin_users')
         .update({ last_login: new Date().toISOString() })
-        .eq('id', data.id);
+        .eq('id', adminData.admin_id);
 
       toast({
         title: "Connexion réussie",
-        description: `Bienvenue ${data.full_name}`,
+        description: `Bienvenue ${adminData.admin_full_name}`,
       });
 
       navigate('/admin/dashboard');
     } catch (error) {
-      console.error('Login error:', error);
+      console.error('Erreur de connexion:', error);
       toast({
         title: "Erreur",
         description: "Une erreur est survenue lors de la connexion",
@@ -102,7 +113,7 @@ const AdminLogin = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@casahills.ma"
+                  placeholder="casahills@admin.com"
                   required
                 />
               </div>
@@ -129,7 +140,7 @@ const AdminLogin = () => {
         </Card>
 
         <div className="mt-6 text-center text-sm text-gray-500">
-          <p>Compte par défaut : admin@casahills.ma / admin123</p>
+          <p>Accès réservé aux administrateurs autorisés</p>
         </div>
       </div>
     </div>
