@@ -29,27 +29,6 @@ const Philosophie = () => {
     }
   ];
 
-  const team = [
-    {
-      name: "Mme. Fatima Benali",
-      role: "Directrice Générale",
-      experience: "15 ans d'expérience",
-      description: "Diplômée en Sciences de l'Éducation, passionnée par l'innovation pédagogique."
-    },
-    {
-      name: "M. Ahmed Chraibi", 
-      role: "Directeur Pédagogique",
-      experience: "12 ans d'expérience",
-      description: "Expert en programmes internationaux et accompagnement scolaire."
-    },
-    {
-      name: "Mme. Sarah Alami",
-      role: "Coordinatrice Maternelle",
-      experience: "10 ans d'expérience", 
-      description: "Spécialisée en développement de la petite enfance et pédagogie Montessori."
-    }
-  ];
-
   return (
     <div className="min-h-screen">
       <Header />
@@ -118,36 +97,6 @@ const Philosophie = () => {
                   <div className="mb-4 flex justify-center">{value.icon}</div>
                   <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
                   <p className="text-gray-600">{value.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Équipe dirigeante */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold text-gray-900 mb-4">
-              Notre Équipe Dirigeante
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Des professionnels passionnés et expérimentés au service de la réussite de vos enfants.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {team.map((member, index) => (
-              <Card key={index} className="p-6 text-center">
-                <CardContent className="p-0">
-                  <div className="w-20 h-20 bg-gradient-to-br from-casa-blue to-casa-red rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <Users className="h-10 w-10 text-white" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
-                  <p className="text-casa-blue font-medium mb-2">{member.role}</p>
-                  <p className="text-sm text-gray-600 mb-3">{member.experience}</p>
-                  <p className="text-gray-700">{member.description}</p>
                 </CardContent>
               </Card>
             ))}
