@@ -119,7 +119,7 @@ const AdminDashboard = () => {
                 <h1 className="text-2xl font-display font-bold text-casa-blue">
                   Administration Casa Hills
                 </h1>
-                <Shield className="h-5 w-5 text-green-600" title="Session sécurisée" />
+                <Shield className="h-5 w-5 text-green-600" />
               </div>
               <p className="text-gray-600">
                 Bienvenue, {adminSession?.full_name}

@@ -23,7 +23,7 @@ class SecurityMonitor {
 
   private recentAlerts: Map<string, number> = new Map();
 
-  async logAlert(alert: Omit<SecurityAlert, 'id' | 'timestamp'>): Promise<void> {
+  async logAlert(alert: Omit<SecurityAlert, 'id' | 'timestamp'>): Promise<void> => {
     try {
       const fullAlert: SecurityAlert = {
         ...alert,
@@ -33,15 +33,8 @@ class SecurityMonitor {
         user_agent: alert.user_agent || navigator.userAgent
       };
 
-      // Enregistrer en base de données
-      await supabase.rpc('log_security_alert', {
-        alert_type: fullAlert.type,
-        severity: fullAlert.severity,
-        message: fullAlert.message,
-        details: JSON.stringify(fullAlert.details),
-        ip_address: fullAlert.ip_address,
-        user_agent: fullAlert.user_agent
-      });
+      // Pour l'instant, on log en console car les fonctions RPC n'existent pas
+      console.log('Alerte de sécurité:', fullAlert);
 
       // Vérifier si une escalade est nécessaire
       await this.checkForEscalation(fullAlert);
@@ -94,13 +87,7 @@ class SecurityMonitor {
     };
 
     try {
-      await supabase.rpc('escalate_security_alert', {
-        original_alert_id: alert.id,
-        escalated_alert: JSON.stringify(escalatedAlert)
-      });
-
-      // En production, ici on pourrait envoyer des notifications
-      // par email, SMS, webhook, etc.
+      // Pour l'instant, on log en console car les fonctions RPC n'existent pas
       console.warn('ALERTE DE SÉCURITÉ CRITIQUE:', escalatedAlert);
 
     } catch (error) {

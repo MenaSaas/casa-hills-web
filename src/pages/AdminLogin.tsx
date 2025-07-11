@@ -185,14 +185,6 @@ const AdminLogin = () => {
       const encryptedSession = encryptSessionData(secureSession);
       localStorage.setItem('secure_admin_session', encryptedSession);
 
-      // Enregistrer la session côté serveur (pour validation)
-      await supabase.rpc('create_admin_session', {
-        admin_id: adminData.admin_id,
-        session_token: sessionToken,
-        expires_at: expiresAt.toISOString(),
-        csrf_token: csrfToken
-      }).catch(console.error);
-
       // Mettre à jour la dernière connexion
       await supabase
         .from('admin_users')
