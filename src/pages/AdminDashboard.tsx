@@ -13,22 +13,56 @@ import {
   LogOut,
   Eye,
   Clock,
-  FolderOpen
+  FolderOpen,
+  Shield,
+  AlertTriangle
 } from 'lucide-react';
+import { initializeSecurityMonitoring } from '@/utils/securityMonitoring';
 
 const AdminDashboard = () => {
-  const { adminSession, isLoading, logout } = useAdminAuth();
+  const { adminSession, isLoading, logout, isValidating, renewSession } = useAdminAuth();
   const [stats, setStats] = useState({
     totalPhotos: 0,
     carouselPhotos: 0,
     recentUploads: 0
   });
+  const [sessionStatus, setSessionStatus] = useState<'active' | 'expiring' | 'invalid'>('active');
 
   useEffect(() => {
     if (adminSession) {
       fetchStats();
     }
   }, [adminSession]);
+
+  // Initialiser la surveillance de sécurité
+  useEffect(() => {
+    initializeSecurityMonitoring();
+  }, []);
+
+  // Surveiller l'expiration de session
+  useEffect(() => {
+    if (!adminSession) return;
+
+    const checkSessionExpiration = () => {
+      const expiresAt = new Date(adminSession.expiresAt);
+      const now = new Date();
+      const timeUntilExpiration = expiresAt.getTime() - now.getTime();
+      
+      if (timeUntilExpiration <= 0) {
+        setSessionStatus('invalid');
+        logout();
+      } else if (timeUntilExpiration <= 30 * 60 * 1000) { // 30 minutes
+        setSessionStatus('expiring');
+      } else {
+        setSessionStatus('active');
+      }
+    };
+
+    checkSessionExpiration();
+    const interval = setInterval(checkSessionExpiration, 60 * 1000); // Vérifier chaque minute
+
+    return () => clearInterval(interval);
+  }, [adminSession, logout]);
 
   const fetchStats = async () => {
     try {
@@ -56,12 +90,19 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleRenewSession = async () => {
+    const success = await renewSession();
+    if (success) {
+      setSessionStatus('active');
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-casa-blue mx-auto"></div>
-          <p className="mt-4 text-gray-600">Chargement...</p>
+          <p className="mt-4 text-gray-600">Vérification sécurisée...</p>
         </div>
       </div>
     );
@@ -69,19 +110,44 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
+      {/* Header avec indicateur de sécurité */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div>
-              <h1 className="text-2xl font-display font-bold text-casa-blue">
-                Administration Casa Hills
-              </h1>
+              <div className="flex items-center gap-2 mb-2">
+                <h1 className="text-2xl font-display font-bold text-casa-blue">
+                  Administration Casa Hills
+                </h1>
+                <Shield className="h-5 w-5 text-green-600" title="Session sécurisée" />
+              </div>
               <p className="text-gray-600">
                 Bienvenue, {adminSession?.full_name}
               </p>
+              {sessionStatus === 'expiring' && (
+                <div className="flex items-center gap-2 mt-2 p-2 bg-orange-50 border border-orange-200 rounded-md">
+                  <AlertTriangle className="h-4 w-4 text-orange-500" />
+                  <span className="text-sm text-orange-700">
+                    Session expire bientôt
+                  </span>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={handleRenewSession}
+                    className="ml-2"
+                  >
+                    Renouveler
+                  </Button>
+                </div>
+              )}
             </div>
             <div className="flex items-center gap-4">
+              {isValidating && (
+                <div className="flex items-center gap-2 text-sm text-gray-500">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-casa-blue"></div>
+                  Validation...
+                </div>
+              )}
               <Link to="/" target="_blank">
                 <Button variant="outline" size="sm">
                   <Eye className="h-4 w-4 mr-2" />
@@ -95,7 +161,7 @@ const AdminDashboard = () => {
                 className="text-red-600 hover:text-red-700"
               >
                 <LogOut className="h-4 w-4 mr-2" />
-                Déconnexion
+                Déconnexion sécurisée
               </Button>
             </div>
           </div>
@@ -104,8 +170,8 @@ const AdminDashboard = () => {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        {/* Stats Cards avec indicateur de sécurité */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Photos totales</CardTitle>
@@ -141,6 +207,19 @@ const AdminDashboard = () => {
               <div className="text-2xl font-bold">{stats.recentUploads}</div>
               <p className="text-xs text-muted-foreground">
                 Nouveaux ajouts
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Sécurité</CardTitle>
+              <Shield className="h-4 w-4 text-green-600" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-green-600">Actif</div>
+              <p className="text-xs text-muted-foreground">
+                Protection active
               </p>
             </CardContent>
           </Card>
