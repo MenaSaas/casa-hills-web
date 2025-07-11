@@ -23,7 +23,7 @@ class SecurityMonitor {
 
   private recentAlerts: Map<string, number> = new Map();
 
-  async logAlert(alert: Omit<SecurityAlert, 'id' | 'timestamp'>): Promise<void> => {
+  async logAlert(alert: Omit<SecurityAlert, 'id' | 'timestamp'>): Promise<void> {
     try {
       const fullAlert: SecurityAlert = {
         ...alert,
