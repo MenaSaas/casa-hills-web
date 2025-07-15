@@ -15,7 +15,10 @@ import {
   Clock,
   FolderOpen,
   Shield,
-  AlertTriangle
+  AlertTriangle,
+  Calendar,
+  FileText,
+  Users
 } from 'lucide-react';
 import { initializeSecurityMonitoring } from '@/utils/securityMonitoring';
 
@@ -24,7 +27,11 @@ const AdminDashboard = () => {
   const [stats, setStats] = useState({
     totalPhotos: 0,
     carouselPhotos: 0,
-    recentUploads: 0
+    recentUploads: 0,
+    totalEvents: 0,
+    upcomingEvents: 0,
+    totalBlogPosts: 0,
+    publishedBlogPosts: 0
   });
   const [sessionStatus, setSessionStatus] = useState<'active' | 'expiring' | 'invalid'>('active');
 
@@ -80,10 +87,35 @@ const AdminDashboard = () => {
         .select('*', { count: 'exact' })
         .gte('created_at', new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString());
 
+      // Fetch events stats
+      const { data: allEvents } = await supabase
+        .from('events')
+        .select('*', { count: 'exact' });
+
+      const { data: upcomingEvents } = await supabase
+        .from('events')
+        .select('*', { count: 'exact' })
+        .gte('event_date', new Date().toISOString())
+        .eq('status', 'published');
+
+      // Fetch blog posts stats
+      const { data: allBlogPosts } = await supabase
+        .from('blog_posts')
+        .select('*', { count: 'exact' });
+
+      const { data: publishedBlogPosts } = await supabase
+        .from('blog_posts')
+        .select('*', { count: 'exact' })
+        .eq('status', 'published');
+
       setStats({
         totalPhotos: allPhotos?.length || 0,
         carouselPhotos: carouselPhotos?.length || 0,
-        recentUploads: recentPhotos?.length || 0
+        recentUploads: recentPhotos?.length || 0,
+        totalEvents: allEvents?.length || 0,
+        upcomingEvents: upcomingEvents?.length || 0,
+        totalBlogPosts: allBlogPosts?.length || 0,
+        publishedBlogPosts: publishedBlogPosts?.length || 0
       });
     } catch (error) {
       console.error('Error fetching stats:', error);
@@ -171,7 +203,7 @@ const AdminDashboard = () => {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats Cards avec indicateur de sécurité */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-6 mb-8">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Photos totales</CardTitle>
@@ -223,10 +255,36 @@ const AdminDashboard = () => {
               </p>
             </CardContent>
           </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Événements</CardTitle>
+              <Calendar className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats.totalEvents}</div>
+              <p className="text-xs text-muted-foreground">
+                {stats.upcomingEvents} à venir
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Articles</CardTitle>
+              <FileText className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats.totalBlogPosts}</div>
+              <p className="text-xs text-muted-foreground">
+                {stats.publishedBlogPosts} publiés
+              </p>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           <Card className="hover:shadow-lg transition-shadow cursor-pointer">
             <Link to="/admin/photos">
               <CardHeader>
@@ -279,6 +337,44 @@ const AdminDashboard = () => {
                 </p>
                 <Button className="w-full bg-casa-red hover:bg-red-700">
                   Modifier le carousel
+                </Button>
+              </CardContent>
+            </Link>
+          </Card>
+
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+            <Link to="/admin/events">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Calendar className="h-5 w-5 text-casa-green" />
+                  Gérer les événements
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">
+                  Créer et gérer les événements de l'école
+                </p>
+                <Button className="w-full bg-casa-green hover:bg-green-700">
+                  Ouvrir les événements
+                </Button>
+              </CardContent>
+            </Link>
+          </Card>
+
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+            <Link to="/admin/blog">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <FileText className="h-5 w-5 text-casa-blue" />
+                  Gérer le blog
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">
+                  Créer et gérer les articles du blog
+                </p>
+                <Button className="w-full bg-casa-blue hover:bg-blue-700">
+                  Ouvrir le blog
                 </Button>
               </CardContent>
             </Link>

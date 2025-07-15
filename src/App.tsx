@@ -25,6 +25,10 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminPhotos from "./pages/AdminPhotos";
 import AdminPhotoUpload from "./pages/AdminPhotoUpload";
+import AdminEvents from "./pages/AdminEvents";
+import AdminEventForm from "./pages/AdminEventForm";
+import AdminBlog from "./pages/AdminBlog";
+import AdminBlogForm from "./pages/AdminBlogForm";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +58,12 @@ const App = () => (
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/photos" element={<AdminPhotos />} />
           <Route path="/admin/photos/upload" element={<AdminPhotoUpload />} />
+          <Route path="/admin/events" element={<AdminEvents />} />
+          <Route path="/admin/events/new" element={<AdminEventForm />} />
+          <Route path="/admin/events/edit/:id" element={<AdminEventForm />} />
+          <Route path="/admin/blog" element={<AdminBlog />} />
+          <Route path="/admin/blog/new" element={<AdminBlogForm />} />
+          <Route path="/admin/blog/edit/:id" element={<AdminBlogForm />} />
           
           <Route path="*" element={<NotFound />} />
         </Routes>
