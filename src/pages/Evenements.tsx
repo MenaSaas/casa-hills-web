@@ -20,7 +20,7 @@ const Evenements = () => {
         .from('events')
         .select('*')
         .eq('status', 'published')
-        .gte('event_date', new Date().toISOString())
+        .gte('event_date', new Date().toISOString().split('T')[0])
         .order('event_date', { ascending: true });
 
       if (error) throw error;
