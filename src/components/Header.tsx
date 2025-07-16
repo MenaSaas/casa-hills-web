@@ -18,6 +18,9 @@ const Header = () => {
   const mainNavigation = [
     { name: 'Accueil', href: '/' },
     { name: 'Notre École', href: '/philosophie' },
+    { name: 'Actualités', href: '/actualites' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Événements', href: '/evenements' },
     { name: 'Admissions', href: '/admissions' },
     { name: 'Contact', href: '/contact' }
   ];
@@ -79,7 +82,7 @@ const Header = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`px-4 py-2 text-sm font-medium transition-colors hover:text-casa-blue rounded-md ${
+                className={`px-3 py-2 text-sm font-medium transition-colors hover:text-casa-blue rounded-md ${
                   location.pathname === item.href
                     ? 'text-casa-blue bg-blue-50'
                     : 'text-gray-700'
@@ -127,7 +130,7 @@ const Header = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`px-4 py-2 text-sm font-medium transition-colors hover:text-casa-blue rounded-md ${
+                className={`px-3 py-2 text-sm font-medium transition-colors hover:text-casa-blue rounded-md ${
                   location.pathname === item.href
                     ? 'text-casa-blue bg-blue-50'
                     : 'text-gray-700'

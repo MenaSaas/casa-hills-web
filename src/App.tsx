@@ -14,6 +14,9 @@ import College from "./pages/College";
 import Lycee from "./pages/Lycee";
 import Philosophie from "./pages/Philosophie";
 import Actualites from "./pages/Actualites";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
+import Evenements from "./pages/Evenements";
 import Admissions from "./pages/Admissions";
 import Contact from "./pages/Contact";
 import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
@@ -47,6 +50,9 @@ const App = () => (
           <Route path="/lycee" element={<Lycee />} />
           <Route path="/philosophie" element={<Philosophie />} />
           <Route path="/actualites" element={<Actualites />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/evenements" element={<Evenements />} />
           <Route path="/admissions" element={<Admissions />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />

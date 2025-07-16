@@ -1,88 +1,66 @@
 
+import { useQuery } from '@tanstack/react-query';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Calendar, Clock, Users, Trophy, BookOpen, Camera } from 'lucide-react';
+import { Calendar, Clock, Users, Trophy, BookOpen, Camera, ArrowRight, User } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { Tables } from '@/integrations/supabase/types';
+import { format } from 'date-fns';
+import { fr } from 'date-fns/locale';
+import { Link } from 'react-router-dom';
+
+type BlogPost = Tables<'blog_posts'>;
+type Event = Tables<'events'>;
 
 const Actualites = () => {
-  const news = [
-    {
-      date: "15 Décembre 2024",
-      category: "Événement",
-      title: "Journée Portes Ouvertes - Samedi 20 Janvier 2025",
-      description: "Venez découvrir Casa Hills ! Visite des locaux, rencontre avec les équipes pédagogiques, démonstrations en classes. De 9h à 16h.",
-      image: "photo-1581091226825-a6a2a5aee158",
-      featured: true
-    },
-    {
-      date: "10 Décembre 2024",
-      category: "Réussite",
-      title: "Nos élèves brillent aux Olympiades de Mathématiques",
-      description: "Félicitations à nos 3 élèves finalistes aux Olympiades nationales de Mathématiques. Une performance remarquable !",
-      image: "photo-1461749280684-dccba630e2f6",
-      featured: true
-    },
-    {
-      date: "5 Décembre 2024",
-      category: "Culture",
-      title: "Spectacle de fin d'année : 'Le Petit Prince'",
-      description: "Les élèves de primaire et collège présentent leur adaptation du célèbre conte. Représentation le 18 décembre à 19h.",
-      image: "photo-1519389950473-47ba0277781c",
-      featured: false
-    },
-    {
-      date: "28 Novembre 2024",
-      category: "Sport",
-      title: "Championnat Inter-Écoles de Basketball",
-      description: "Nos équipes masculines et féminines se sont qualifiées pour les finales régionales. Match décisif le 15 décembre.",
-      image: "photo-1486312338219-ce68d2c6f44d",
-      featured: false
-    },
-    {
-      date: "20 Novembre 2024",
-      category: "Pédagogie",
-      title: "Nouveau laboratoire de sciences inauguré",
-      description: "Casa Hills inaugure son nouveau laboratoire équipé des dernières technologies pour l'enseignement des sciences.",
-      image: "photo-1487252665478-49b61b47f302",
-      featured: false
-    },
-    {
-      date: "15 Novembre 2024",
-      category: "International",
-      title: "Partenariat avec l'École Française de Londres",
-      description: "Signature d'un accord d'échange scolaire permettant à nos élèves de découvrir le système éducatif britannique.",
-      image: "photo-1506744038136-46273834b3fb",
-      featured: false
-    }
-  ];
+  const { data: posts, isLoading: postsLoading } = useQuery({
+    queryKey: ['recent-blog-posts'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .eq('status', 'published')
+        .order('published_at', { ascending: false })
+        .limit(6);
 
-  const events = [
-    {
-      date: "20 Jan",
-      title: "Journée Portes Ouvertes",
-      time: "9h00 - 16h00",
-      type: "Visite"
+      if (error) throw error;
+      return data;
     },
-    {
-      date: "25 Jan",
-      title: "Conférence Orientation",
-      time: "18h30 - 20h00",
-      type: "Conférence"
+  });
+
+  const { data: events, isLoading: eventsLoading } = useQuery({
+    queryKey: ['upcoming-events'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('events')
+        .select('*')
+        .eq('status', 'published')
+        .gte('event_date', new Date().toISOString())
+        .order('event_date', { ascending: true })
+        .limit(4);
+
+      if (error) throw error;
+      return data;
     },
-    {
-      date: "2 Fév",
-      title: "Concours d'Éloquence",
-      time: "14h00 - 17h00",
-      type: "Concours"
-    },
-    {
-      date: "10 Fév",
-      title: "Festival des Arts",
-      time: "15h00 - 19h00",
-      type: "Culture"
-    }
-  ];
+  });
+
+  const formatDate = (dateString: string | null) => {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return format(date, 'd MMMM yyyy', { locale: fr });
+  };
+
+  const formatEventDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return format(date, 'd MMM', { locale: fr });
+  };
+
+  const formatEventTime = (dateString: string) => {
+    const date = new Date(dateString);
+    return format(date, 'HH:mm', { locale: fr });
+  };
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -140,66 +118,114 @@ const Actualites = () => {
             </p>
           </div>
 
-          {/* Articles à la une */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-            {news.filter(article => article.featured).map((article, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow">
-                <div className="aspect-w-16 aspect-h-9">
-                  <img
-                    src={`https://images.unsplash.com/${article.image}?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80`}
-                    alt={article.title}
-                    className="w-full h-64 object-cover"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(article.category)}`}>
-                      {getCategoryIcon(article.category)}
-                      <span className="ml-1">{article.category}</span>
-                    </span>
-                    <div className="flex items-center text-gray-500 text-sm">
-                      <Clock className="h-4 w-4 mr-1" />
-                      {article.date}
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">{article.title}</h3>
-                  <p className="text-gray-600 mb-4">{article.description}</p>
-                  <Button variant="outline" size="sm">
-                    Lire la suite
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {postsLoading ? (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+              {[...Array(2)].map((_, i) => (
+                <Card key={i} className="animate-pulse">
+                  <div className="h-64 bg-gray-200 rounded-t-lg"></div>
+                  <CardContent className="p-6">
+                    <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                    <div className="h-6 bg-gray-200 rounded mb-4"></div>
+                    <div className="h-16 bg-gray-200 rounded"></div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : posts && posts.length > 0 ? (
+            <>
+              {/* Articles à la une */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+                {posts.slice(0, 2).map((post) => (
+                  <Card key={post.id} className="overflow-hidden hover:shadow-xl transition-shadow">
+                    {post.image_url && (
+                      <div className="aspect-w-16 aspect-h-9">
+                        <img
+                          src={post.image_url}
+                          alt={post.title}
+                          className="w-full h-64 object-cover"
+                        />
+                      </div>
+                    )}
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center text-gray-500 text-sm">
+                          <User className="h-4 w-4 mr-1" />
+                          {post.author}
+                        </div>
+                        <div className="flex items-center text-gray-500 text-sm">
+                          <Clock className="h-4 w-4 mr-1" />
+                          {formatDate(post.published_at)}
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-bold mb-3">{post.title}</h3>
+                      <p className="text-gray-600 mb-4">
+                        {post.excerpt || post.content.substring(0, 150) + '...'}
+                      </p>
+                      <Link to={`/blog/${post.slug}`}>
+                        <Button variant="outline" size="sm">
+                          Lire la suite
+                        </Button>
+                      </Link>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
 
-          {/* Autres articles */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {news.filter(article => !article.featured).map((article, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="aspect-w-16 aspect-h-9">
-                  <img
-                    src={`https://images.unsplash.com/${article.image}?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80`}
-                    alt={article.title}
-                    className="w-full h-48 object-cover"
-                  />
-                </div>
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(article.category)}`}>
-                      {getCategoryIcon(article.category)}
-                      <span className="ml-1">{article.category}</span>
-                    </span>
-                    <span className="text-gray-500 text-xs">{article.date}</span>
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">{article.title}</h3>
-                  <p className="text-gray-600 text-sm mb-3">{article.description}</p>
-                  <Button variant="ghost" size="sm" className="text-casa-blue hover:text-casa-blue">
-                    Lire plus →
+              {/* Autres articles */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {posts.slice(2).map((post) => (
+                  <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                    {post.image_url && (
+                      <div className="aspect-w-16 aspect-h-9">
+                        <img
+                          src={post.image_url}
+                          alt={post.title}
+                          className="w-full h-48 object-cover"
+                        />
+                      </div>
+                    )}
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center text-gray-500 text-xs">
+                          <User className="h-3 w-3 mr-1" />
+                          {post.author}
+                        </div>
+                        <span className="text-gray-500 text-xs">{formatDate(post.published_at)}</span>
+                      </div>
+                      <h3 className="text-lg font-semibold mb-2">{post.title}</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        {post.excerpt || post.content.substring(0, 100) + '...'}
+                      </p>
+                      <Link to={`/blog/${post.slug}`}>
+                        <Button variant="ghost" size="sm" className="text-casa-blue hover:text-casa-blue group">
+                          Lire plus
+                          <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                      </Link>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
+              {/* Link to full blog */}
+              <div className="text-center mt-12">
+                <Link to="/blog">
+                  <Button className="bg-casa-blue hover:bg-blue-700">
+                    Voir tous les articles
+                    <ArrowRight className="h-4 w-4 ml-2" />
                   </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                </Link>
+              </div>
+            </>
+          ) : (
+            <div className="text-center py-16">
+              <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-600 mb-2">Aucun article disponible</h3>
+              <p className="text-gray-500">
+                Revenez bientôt pour découvrir nos derniers articles.
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -215,25 +241,64 @@ const Actualites = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {events.map((event, index) => (
-              <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow">
-                <CardContent className="p-0">
-                  <div className="w-16 h-16 bg-casa-blue rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-white font-bold">{event.date}</span>
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">{event.title}</h3>
-                  <div className="flex items-center justify-center text-gray-500 text-sm mb-2">
-                    <Clock className="h-4 w-4 mr-1" />
-                    {event.time}
-                  </div>
-                  <span className="inline-block bg-casa-red text-white px-3 py-1 rounded-full text-xs">
-                    {event.type}
-                  </span>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {eventsLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[...Array(4)].map((_, i) => (
+                <Card key={i} className="animate-pulse text-center p-6">
+                  <CardContent className="p-0">
+                    <div className="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-4"></div>
+                    <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                    <div className="h-3 bg-gray-200 rounded mb-2"></div>
+                    <div className="h-6 bg-gray-200 rounded"></div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : events && events.length > 0 ? (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {events.map((event) => (
+                  <Card key={event.id} className="text-center p-6 hover:shadow-lg transition-shadow">
+                    <CardContent className="p-0">
+                      <div className="w-16 h-16 bg-casa-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span className="text-white font-bold text-sm">{formatEventDate(event.event_date)}</span>
+                      </div>
+                      <h3 className="text-lg font-semibold mb-2">{event.title}</h3>
+                      <div className="flex items-center justify-center text-gray-500 text-sm mb-2">
+                        <Clock className="h-4 w-4 mr-1" />
+                        {formatEventTime(event.event_date)}
+                      </div>
+                      <div className="flex items-center justify-center text-gray-500 text-sm mb-3">
+                        <Users className="h-4 w-4 mr-1" />
+                        {event.location}
+                      </div>
+                      <span className="inline-block bg-casa-red text-white px-3 py-1 rounded-full text-xs">
+                        Événement
+                      </span>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+              
+              {/* Link to all events */}
+              <div className="text-center mt-12">
+                <Link to="/evenements">
+                  <Button variant="outline" className="border-casa-blue text-casa-blue hover:bg-casa-blue hover:text-white">
+                    Voir tous les événements
+                    <ArrowRight className="h-4 w-4 ml-2" />
+                  </Button>
+                </Link>
+              </div>
+            </>
+          ) : (
+            <div className="text-center py-16">
+              <Calendar className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-600 mb-2">Aucun événement à venir</h3>
+              <p className="text-gray-500">
+                Revenez bientôt pour découvrir nos prochains événements.
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
