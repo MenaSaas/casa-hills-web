@@ -1,3 +1,4 @@
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HomeCarousel from '@/components/HomeCarousel';
@@ -7,46 +8,44 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { BookOpen, Globe, Users, Award, CheckCircle, Star, Trophy, Heart, MapPin, Phone, Mail } from 'lucide-react';
+
 const Index = () => {
-  const features = [{
-    icon: <BookOpen className="h-8 w-8 text-casa-blue" />,
-    title: "Excellence Académique",
-    description: "Programme éducatif rigoureux alliant tradition française et ouverture internationale.",
-    stats: "98% de réussite"
-  }, {
-    icon: <Globe className="h-8 w-8 text-casa-blue" />,
-    title: "Environnement Multiculturel",
-    description: "Diversité culturelle enrichissante préparant nos élèves à un monde globalisé.",
-    stats: "International"
-  }, {
-    icon: <Users className="h-8 w-8 text-casa-blue" />,
-    title: "Équipe Pédagogique Qualifiée",
-    description: "Enseignants expérimentés et passionnés, formés aux meilleures pratiques éducatives.",
-    stats: "1:12 ratio"
-  }, {
-    icon: <Award className="h-8 w-8 text-casa-blue" />,
-    title: "Équipements Modernes",
-    description: "Laboratoires, bibliothèque, espaces sportifs et technologiques de dernière génération.",
-    stats: "100% équipé"
-  }];
-  const quickStats = [{
-    number: "500+",
-    label: "Élèves épanouis",
-    icon: <Users className="h-6 w-6" />
-  }, {
-    number: "15",
-    label: "Années d'excellence",
-    icon: <Trophy className="h-6 w-6" />
-  }, {
-    number: "98%",
-    label: "Taux de réussite",
-    icon: <Star className="h-6 w-6" />
-  }, {
-    number: "95%",
-    label: "Satisfaction parents",
-    icon: <Heart className="h-6 w-6" />
-  }];
-  return <div className="min-h-screen">
+  const features = [
+    {
+      icon: <BookOpen className="h-8 w-8 text-casa-blue" />,
+      title: "Excellence Académique",
+      description: "Programme éducatif rigoureux alliant tradition française et ouverture internationale.",
+      stats: "98% de réussite"
+    },
+    {
+      icon: <Globe className="h-8 w-8 text-casa-blue" />,
+      title: "Environnement Multiculturel",
+      description: "Diversité culturelle enrichissante préparant nos élèves à un monde globalisé.",
+      stats: "International"
+    },
+    {
+      icon: <Users className="h-8 w-8 text-casa-blue" />,
+      title: "Équipe Pédagogique Qualifiée",
+      description: "Enseignants expérimentés et passionnés, formés aux meilleures pratiques éducatives.",
+      stats: "1:12 ratio"
+    },
+    {
+      icon: <Award className="h-8 w-8 text-casa-blue" />,
+      title: "Équipements Modernes",
+      description: "Laboratoires, bibliothèque, espaces sportifs et technologiques de dernière génération.",
+      stats: "100% équipé"
+    }
+  ];
+
+  const quickStats = [
+    { number: "500+", label: "Élèves épanouis", icon: <Users className="h-6 w-6" /> },
+    { number: "15", label: "Années d'excellence", icon: <Trophy className="h-6 w-6" /> },
+    { number: "98%", label: "Taux de réussite", icon: <Star className="h-6 w-6" /> },
+    { number: "95%", label: "Satisfaction parents", icon: <Heart className="h-6 w-6" /> }
+  ];
+
+  return (
+    <div className="min-h-screen">
       <Header />
       
       {/* Premium Slogan Banner */}
@@ -72,8 +71,9 @@ const Index = () => {
                   École privée d'excellence
                 </span>
               </div>
-              <h1 className="text-4xl lg:text-6xl font-display font-bold mb-6 text-casa-blue">École Privée
-Casa Hills </h1>
+              <h1 className="text-4xl lg:text-6xl font-display font-bold mb-6 text-casa-blue">
+                École Privée Casa Hills à Casablanca
+              </h1>
               <p className="text-xl lg:text-2xl mb-4 text-casa-red font-medium">
                 L'excellence éducative de la maternelle au lycée
               </p>
@@ -109,13 +109,15 @@ Casa Hills </h1>
       <section className="py-12 bg-white shadow-lg relative -mt-8 z-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {quickStats.map((stat, index) => <div key={index} className="text-center group">
+            {quickStats.map((stat, index) => (
+              <div key={index} className="text-center group">
                 <div className="flex justify-center mb-3 text-casa-blue group-hover:scale-110 transition-transform duration-300">
                   {stat.icon}
                 </div>
                 <div className="text-3xl font-bold text-casa-blue mb-1">{stat.number}</div>
                 <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -135,7 +137,8 @@ Casa Hills </h1>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => <Card key={index} className="p-6 text-center hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in group border-casa-blue/20">
+            {features.map((feature, index) => (
+              <Card key={index} className="p-6 text-center hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in group border-casa-blue/20">
                 <CardContent className="p-0">
                   <div className="mb-4 flex justify-center group-hover:scale-110 transition-transform duration-300">
                     {feature.icon}
@@ -146,7 +149,8 @@ Casa Hills </h1>
                     {feature.stats}
                   </div>
                 </CardContent>
-              </Card>)}
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -347,20 +351,33 @@ Casa Hills </h1>
                     Dossier d'admission
                   </Button>
                 </Link>
-                <a href="https://www.men.gov.ma" target="_blank" rel="noopener noreferrer" className="inline-flex">
-                  
+                <a 
+                  href="https://www.men.gov.ma" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex"
+                >
+                  <Button variant="outline" className="border-casa-blue text-casa-blue hover:bg-casa-blue hover:text-white">
+                    Ministère de l'Éducation
+                  </Button>
                 </a>
               </div>
             </div>
             <div className="bg-gradient-to-br from-casa-blue to-casa-red p-8 rounded-2xl text-white">
-              <h3 className="text-2xl font-bold mb-6">Inscriptions 2025-2026</h3>
+              <h3 className="text-2xl font-bold mb-6">Inscriptions 2024-2025</h3>
               <div className="space-y-4">
-                
+                <div className="flex justify-between items-center py-3 border-b border-white/20">
+                  <span>Frais de dossier</span>
+                  <span className="font-semibold">500 DH</span>
+                </div>
                 <div className="flex justify-between items-center py-3 border-b border-white/20">
                   <span>Visite personnalisée</span>
                   <span className="font-semibold">Gratuite</span>
                 </div>
-                
+                <div className="flex justify-between items-center py-3 border-b border-white/20">
+                  <span>Test d'évaluation</span>
+                  <span className="font-semibold">Inclus</span>
+                </div>
                 <div className="flex justify-between items-center py-3">
                   <span>Réponse sous</span>
                   <span className="font-semibold">48h</span>
@@ -472,6 +489,8 @@ Casa Hills </h1>
 
       <Footer />
       <CookieBanner />
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
