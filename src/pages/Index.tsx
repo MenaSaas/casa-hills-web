@@ -88,7 +88,7 @@ const Index = () => {
                 <Link to="/admissions">
                   <Button size="lg" className="bg-casa-red hover:bg-red-700 text-white px-8 py-4 text-lg font-medium shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
                     <CheckCircle className="h-5 w-5 mr-2" />
-                    Admission scolaire Casablanca
+                    Admission
                   </Button>
                 </Link>
                 <Link to="/contact">
