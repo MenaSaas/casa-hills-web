@@ -355,10 +355,7 @@ Casa Hills </h1>
             <div className="bg-gradient-to-br from-casa-blue to-casa-red p-8 rounded-2xl text-white">
               <h3 className="text-2xl font-bold mb-6">Inscriptions ouvertes 2025-2026</h3>
               <div className="space-y-4">
-                <div className="flex justify-between items-center py-3 border-b border-white/20">
-                  <span>Frais de dossier</span>
-                  <span className="font-semibold">500 DH</span>
-                </div>
+                
                 <div className="flex justify-between items-center py-3 border-b border-white/20">
                   <span>Visite personnalisée</span>
                   <span className="font-semibold">Gratuite</span>
