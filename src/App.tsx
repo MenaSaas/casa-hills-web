@@ -32,8 +32,16 @@ import AdminEvents from "./pages/AdminEvents";
 import AdminEventForm from "./pages/AdminEventForm";
 import AdminBlog from "./pages/AdminBlog";
 import AdminBlogForm from "./pages/AdminBlogForm";
+import AdminLeads from "./pages/AdminLeads";
+import AdminAnalytics from "./pages/AdminAnalytics";
+import { useVisitTracker } from "@/hooks/useVisitTracker";
 
 const queryClient = new QueryClient();
+
+const AppContent = () => {
+  useVisitTracker();
+  return null;
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -41,6 +49,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <AppContent />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
@@ -70,6 +79,8 @@ const App = () => (
           <Route path="/admin/blog" element={<AdminBlog />} />
           <Route path="/admin/blog/new" element={<AdminBlogForm />} />
           <Route path="/admin/blog/edit/:id" element={<AdminBlogForm />} />
+          <Route path="/admin/leads" element={<AdminLeads />} />
+          <Route path="/admin/analytics" element={<AdminAnalytics />} />
           
           <Route path="*" element={<NotFound />} />
         </Routes>

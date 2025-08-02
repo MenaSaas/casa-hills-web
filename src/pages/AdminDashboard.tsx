@@ -284,7 +284,7 @@ const AdminDashboard = () => {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           <Card className="hover:shadow-lg transition-shadow cursor-pointer">
             <Link to="/admin/photos">
               <CardHeader>
@@ -375,6 +375,44 @@ const AdminDashboard = () => {
                 </p>
                 <Button className="w-full bg-casa-blue hover:bg-blue-700">
                   Ouvrir le blog
+                </Button>
+              </CardContent>
+            </Link>
+          </Card>
+
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+            <Link to="/admin/leads">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Users className="h-5 w-5 text-casa-red" />
+                  Gestion des Leads
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">
+                  Voir les candidatures et messages de contact
+                </p>
+                <Button className="w-full bg-casa-red hover:bg-red-700">
+                  Voir les leads
+                </Button>
+              </CardContent>
+            </Link>
+          </Card>
+
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+            <Link to="/admin/analytics">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <BarChart3 className="h-5 w-5 text-purple-600" />
+                  Statistiques
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">
+                  Analytics et données de fréquentation
+                </p>
+                <Button className="w-full bg-purple-600 hover:bg-purple-700">
+                  Voir les stats
                 </Button>
               </CardContent>
             </Link>

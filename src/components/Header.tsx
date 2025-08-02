@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Mail, Facebook, Instagram } from 'lucide-react';
 import {
@@ -13,7 +13,18 @@ import {
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const mainNavigation = [
     { name: 'Accueil', href: '/' },
@@ -33,9 +44,9 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md">
+    <header className={`sticky top-0 z-50 bg-white shadow-md transition-all duration-300 ${isScrolled ? 'py-1' : ''}`}>
       {/* Top bar */}
-      <div className="bg-casa-blue text-white py-2">
+      <div className={`bg-casa-blue text-white transition-all duration-300 ${isScrolled ? 'py-1 opacity-0 h-0 overflow-hidden' : 'py-2'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center text-sm">
             <div className="flex items-center space-x-4">
@@ -63,16 +74,16 @@ const Header = () => {
 
       {/* Main header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+        <div className={`flex justify-between items-center transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}>
           <Link to="/" className="flex items-center space-x-3">
             <img 
               src="/lovable-uploads/303c3f10-6f18-4cac-9f1c-0a591dc1f599.png" 
               alt="Casa Hills Logo" 
-              className="w-16 h-16 object-contain"
+              className={`object-contain transition-all duration-300 ${isScrolled ? 'w-12 h-12' : 'w-16 h-16'}`}
             />
             <div>
-              <h1 className="text-2xl font-display font-bold text-gray-900">Casa Hills</h1>
-              <p className="text-sm text-gray-600">Une école, mille possibilités</p>
+              <h1 className={`font-display font-bold text-gray-900 transition-all duration-300 ${isScrolled ? 'text-xl' : 'text-2xl'}`}>Casa Hills</h1>
+              <p className={`text-gray-600 transition-all duration-300 ${isScrolled ? 'text-xs opacity-0 h-0 overflow-hidden' : 'text-sm'}`}>Une école, mille possibilités</p>
             </div>
           </Link>
 
