@@ -11,9 +11,11 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { FileText, Calendar, Users, CheckCircle, Phone, Mail, FileImage, ClipboardList, Heart } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const Admissions = () => {
   const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     parentName: '',
     email: '',
@@ -25,7 +27,7 @@ const Admissions = () => {
     privacyAccepted: false
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.privacyAccepted) {
@@ -37,20 +39,53 @@ const Admissions = () => {
       return;
     }
 
-    toast({
-      title: "Demande d'inscription envoyée",
-      description: "Nous vous contacterons dans les 48h pour finaliser votre dossier.",
-    });
-    setFormData({
-      parentName: '',
-      email: '',
-      phone: '',
-      childName: '',
-      childAge: '',
-      schoolLevel: '',
-      message: '',
-      privacyAccepted: false
-    });
+    setLoading(true);
+
+    try {
+      const { error } = await supabase
+        .from('admissions')
+        .insert([
+          {
+            parent_name: formData.parentName,
+            email: formData.email,
+            phone: formData.phone,
+            child_name: formData.childName,
+            child_age: parseInt(formData.childAge),
+            school_level: formData.schoolLevel,
+            message: formData.message || null,
+            privacy_accepted: formData.privacyAccepted
+          }
+        ]);
+
+      if (error) {
+        throw error;
+      }
+
+      toast({
+        title: "Demande d'inscription envoyée",
+        description: "Nous vous contacterons dans les 48h pour finaliser votre dossier.",
+      });
+      
+      setFormData({
+        parentName: '',
+        email: '',
+        phone: '',
+        childName: '',
+        childAge: '',
+        schoolLevel: '',
+        message: '',
+        privacyAccepted: false
+      });
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi:', error);
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue lors de l'envoi de votre demande. Veuillez réessayer.",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const steps = [
@@ -324,8 +359,13 @@ const Admissions = () => {
                 </Label>
               </div>
 
-              <Button type="submit" className="w-full bg-casa-blue hover:bg-blue-700" size="lg">
-                Envoyer la demande de pré-inscription
+              <Button 
+                type="submit" 
+                className="w-full bg-casa-blue hover:bg-blue-700" 
+                size="lg"
+                disabled={loading}
+              >
+                {loading ? "Envoi en cours..." : "Envoyer la demande de pré-inscription"}
               </Button>
             </form>
           </Card>

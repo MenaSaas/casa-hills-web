@@ -41,6 +41,48 @@ export type Database = {
         }
         Relationships: []
       }
+      admissions: {
+        Row: {
+          child_age: number
+          child_name: string
+          created_at: string
+          email: string
+          id: string
+          message: string | null
+          parent_name: string
+          phone: string
+          privacy_accepted: boolean
+          school_level: string
+          updated_at: string
+        }
+        Insert: {
+          child_age: number
+          child_name: string
+          created_at?: string
+          email: string
+          id?: string
+          message?: string | null
+          parent_name: string
+          phone: string
+          privacy_accepted?: boolean
+          school_level: string
+          updated_at?: string
+        }
+        Update: {
+          child_age?: number
+          child_name?: string
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string | null
+          parent_name?: string
+          phone?: string
+          privacy_accepted?: boolean
+          school_level?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       blog_posts: {
         Row: {
           author: string
