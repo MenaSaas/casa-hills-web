@@ -41,12 +41,26 @@ interface ContactSubmission {
   created_at: string;
 }
 
+interface AdmissionRequest {
+  id: string;
+  parent_name: string;
+  email: string;
+  phone: string;
+  child_name: string;
+  child_age: number;
+  school_level: string;
+  message: string;
+  privacy_accepted: boolean;
+  created_at: string;
+}
+
 const AdminLeads = () => {
   const { adminSession, isLoading } = useAdminAuth();
   const [leads, setLeads] = useState<LeadCapture[]>([]);
   const [contacts, setContacts] = useState<ContactSubmission[]>([]);
+  const [admissions, setAdmissions] = useState<AdmissionRequest[]>([]);
   const [loadingData, setLoadingData] = useState(true);
-  const [activeTab, setActiveTab] = useState<'leads' | 'contacts'>('leads');
+  const [activeTab, setActiveTab] = useState<'leads' | 'contacts' | 'admissions'>('leads');
 
   useEffect(() => {
     if (adminSession) {
@@ -74,8 +88,17 @@ const AdminLeads = () => {
 
       if (contactsError) throw contactsError;
 
+      // Fetch admissions
+      const { data: admissionsData, error: admissionsError } = await supabase
+        .from('admissions')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (admissionsError) throw admissionsError;
+
       setLeads(leadsData || []);
       setContacts(contactsData || []);
+      setAdmissions(admissionsData || []);
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -146,13 +169,13 @@ const AdminLeads = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Candidatures</CardTitle>
+              <CardTitle className="text-sm font-medium">Lead Captures</CardTitle>
               <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{leads.length}</div>
               <p className="text-xs text-muted-foreground">
-                Demandes d'admission
+                Captures automatiques
               </p>
             </CardContent>
           </Card>
@@ -172,32 +195,30 @@ const AdminLeads = () => {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Cette semaine</CardTitle>
-              <Calendar className="h-4 w-4 text-muted-foreground" />
+              <CardTitle className="text-sm font-medium">Admissions</CardTitle>
+              <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">
-                {leads.filter(lead => 
-                  new Date(lead.created_at) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
-                ).length}
-              </div>
+              <div className="text-2xl font-bold">{admissions.length}</div>
               <p className="text-xs text-muted-foreground">
-                Nouveaux leads
+                Candidatures officielles
               </p>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Téléphone</CardTitle>
-              <Phone className="h-4 w-4 text-muted-foreground" />
+              <CardTitle className="text-sm font-medium">Cette semaine</CardTitle>
+              <Calendar className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {leads.filter(lead => lead.phone).length}
+                {[...leads, ...contacts, ...admissions].filter(item => 
+                  new Date(item.created_at) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+                ).length}
               </div>
               <p className="text-xs text-muted-foreground">
-                Numéros fournis
+                Total cette semaine
               </p>
             </CardContent>
           </Card>
@@ -227,19 +248,32 @@ const AdminLeads = () => {
               >
                 Messages de contact ({contacts.length})
               </button>
+              <button
+                onClick={() => setActiveTab('admissions')}
+                className={`py-4 px-6 border-b-2 font-medium text-sm ${
+                  activeTab === 'admissions'
+                    ? 'border-casa-blue text-casa-blue'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`}
+              >
+                Admissions ({admissions.length})
+              </button>
             </nav>
           </div>
 
           <div className="p-6">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-medium">
-                {activeTab === 'leads' ? 'Demandes d\'admission' : 'Messages de contact'}
+                {activeTab === 'leads' ? 'Lead Captures' : 
+                 activeTab === 'contacts' ? 'Messages de contact' : 'Candidatures d\'admission'}
               </h3>
               <Button
                 onClick={() => 
                   exportToCSV(
-                    activeTab === 'leads' ? leads : contacts, 
-                    activeTab === 'leads' ? 'candidatures' : 'contacts'
+                    activeTab === 'leads' ? leads : 
+                    activeTab === 'contacts' ? contacts : admissions, 
+                    activeTab === 'leads' ? 'leads' : 
+                    activeTab === 'contacts' ? 'contacts' : 'admissions'
                   )
                 }
                 variant="outline"
@@ -290,7 +324,7 @@ const AdminLeads = () => {
                   ))}
                 </TableBody>
               </Table>
-            ) : (
+            ) : activeTab === 'contacts' ? (
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -322,6 +356,51 @@ const AdminLeads = () => {
                       <TableCell>{contact.subject}</TableCell>
                       <TableCell className="max-w-xs truncate" title={contact.message}>
                         {contact.message}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            ) : (
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Date</TableHead>
+                    <TableHead>Parent</TableHead>
+                    <TableHead>Email</TableHead>
+                    <TableHead>Téléphone</TableHead>
+                    <TableHead>Enfant</TableHead>
+                    <TableHead>Âge</TableHead>
+                    <TableHead>Niveau scolaire</TableHead>
+                    <TableHead>Message</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {admissions.map((admission) => (
+                    <TableRow key={admission.id}>
+                      <TableCell>
+                        {format(new Date(admission.created_at), 'dd/MM/yyyy HH:mm', { locale: fr })}
+                      </TableCell>
+                      <TableCell className="font-medium">{admission.parent_name}</TableCell>
+                      <TableCell>
+                        <a href={`mailto:${admission.email}`} className="text-casa-blue hover:underline">
+                          {admission.email}
+                        </a>
+                      </TableCell>
+                      <TableCell>
+                        <a href={`tel:${admission.phone}`} className="text-casa-blue hover:underline">
+                          {admission.phone}
+                        </a>
+                      </TableCell>
+                      <TableCell>{admission.child_name}</TableCell>
+                      <TableCell>
+                        <Badge variant="secondary">{admission.child_age} ans</Badge>
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant="outline">{admission.school_level}</Badge>
+                      </TableCell>
+                      <TableCell className="max-w-xs truncate" title={admission.message}>
+                        {admission.message}
                       </TableCell>
                     </TableRow>
                   ))}
