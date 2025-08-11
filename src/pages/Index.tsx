@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HomeCarousel from '@/components/HomeCarousel';
@@ -8,44 +7,46 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { BookOpen, Globe, Users, Award, CheckCircle, Star, Trophy, Heart } from 'lucide-react';
-
 const Index = () => {
-  const features = [
-    {
-      icon: <BookOpen className="h-8 w-8 text-casa-blue" />,
-      title: "Excellence Académique",
-      description: "Programme éducatif rigoureux alliant tradition française et ouverture internationale.",
-      stats: "98% de réussite"
-    },
-    {
-      icon: <Globe className="h-8 w-8 text-casa-blue" />,
-      title: "Environnement Multiculturel",
-      description: "Diversité culturelle enrichissante préparant nos élèves à un monde globalisé.",
-      stats: "International"
-    },
-    {
-      icon: <Users className="h-8 w-8 text-casa-blue" />,
-      title: "Équipe Pédagogique Qualifiée",
-      description: "Enseignants expérimentés et passionnés, formés aux meilleures pratiques éducatives.",
-      stats: "1:12 ratio"
-    },
-    {
-      icon: <Award className="h-8 w-8 text-casa-blue" />,
-      title: "Équipements Modernes",
-      description: "Laboratoires, bibliothèque, espaces sportifs et technologiques de dernière génération.",
-      stats: "100% équipé"
-    }
-  ];
-
-  const quickStats = [
-    { number: "500+", label: "Élèves épanouis", icon: <Users className="h-6 w-6" /> },
-    { number: "15", label: "Années d'excellence", icon: <Trophy className="h-6 w-6" /> },
-    { number: "98%", label: "Taux de réussite", icon: <Star className="h-6 w-6" /> },
-    { number: "95%", label: "Satisfaction parents", icon: <Heart className="h-6 w-6" /> }
-  ];
-
-  return (
-    <div className="min-h-screen">
+  const features = [{
+    icon: <BookOpen className="h-8 w-8 text-casa-blue" />,
+    title: "Excellence Académique",
+    description: "Programme éducatif rigoureux alliant tradition française et ouverture internationale.",
+    stats: "98% de réussite"
+  }, {
+    icon: <Globe className="h-8 w-8 text-casa-blue" />,
+    title: "Environnement Multiculturel",
+    description: "Diversité culturelle enrichissante préparant nos élèves à un monde globalisé.",
+    stats: "International"
+  }, {
+    icon: <Users className="h-8 w-8 text-casa-blue" />,
+    title: "Équipe Pédagogique Qualifiée",
+    description: "Enseignants expérimentés et passionnés, formés aux meilleures pratiques éducatives.",
+    stats: "1:12 ratio"
+  }, {
+    icon: <Award className="h-8 w-8 text-casa-blue" />,
+    title: "Équipements Modernes",
+    description: "Laboratoires, bibliothèque, espaces sportifs et technologiques de dernière génération.",
+    stats: "100% équipé"
+  }];
+  const quickStats = [{
+    number: "500+",
+    label: "Élèves épanouis",
+    icon: <Users className="h-6 w-6" />
+  }, {
+    number: "15",
+    label: "Années d'excellence",
+    icon: <Trophy className="h-6 w-6" />
+  }, {
+    number: "98%",
+    label: "Taux de réussite",
+    icon: <Star className="h-6 w-6" />
+  }, {
+    number: "95%",
+    label: "Satisfaction parents",
+    icon: <Heart className="h-6 w-6" />
+  }];
+  return <div className="min-h-screen">
       <Header />
       
       {/* Premium Slogan Banner */}
@@ -107,15 +108,13 @@ const Index = () => {
       <section className="py-12 bg-white shadow-lg relative -mt-8 z-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {quickStats.map((stat, index) => (
-              <div key={index} className="text-center group">
+            {quickStats.map((stat, index) => <div key={index} className="text-center group">
                 <div className="flex justify-center mb-3 text-casa-blue group-hover:scale-110 transition-transform duration-300">
                   {stat.icon}
                 </div>
                 <div className="text-3xl font-bold text-casa-blue mb-1">{stat.number}</div>
                 <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -134,8 +133,7 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <Card key={index} className="p-6 text-center hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in group border-casa-blue/20">
+            {features.map((feature, index) => <Card key={index} className="p-6 text-center hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in group border-casa-blue/20">
                 <CardContent className="p-0">
                   <div className="mb-4 flex justify-center group-hover:scale-110 transition-transform duration-300">
                     {feature.icon}
@@ -146,8 +144,7 @@ const Index = () => {
                     {feature.stats}
                   </div>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -162,10 +159,7 @@ const Index = () => {
           <h2 className="text-4xl font-display font-bold mb-6 animate-fade-in">
             Rejoignez la famille Casa Hills
           </h2>
-          <p className="text-xl mb-8 text-white/90 animate-fade-in">
-            Offrez à votre enfant une éducation d'exception dans un environnement 
-            bienveillant et stimulant. Inscriptions ouvertes pour 2024-2025.
-          </p>
+          <p className="text-xl mb-8 text-white/90 animate-fade-in">Offrez à votre enfant une éducation d'exception dans un environnement bienveillant et stimulant. Inscriptions ouvertes pour 2025-2026.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/admissions">
               <Button size="lg" className="bg-white text-casa-blue hover:bg-gray-100 px-8 py-4 text-lg font-medium shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
@@ -184,8 +178,6 @@ const Index = () => {
 
       <Footer />
       <CookieBanner />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
