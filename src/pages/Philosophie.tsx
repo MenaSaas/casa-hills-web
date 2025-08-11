@@ -167,7 +167,7 @@ const Philosophie = () => {
             <Button size="lg" className="bg-white text-casa-blue hover:bg-gray-100">
               Prendre rendez-vous
             </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-casa-blue">
+            <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-casa-blue">
               Télécharger la brochure
             </Button>
           </div>
