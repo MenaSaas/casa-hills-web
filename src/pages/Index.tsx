@@ -2,6 +2,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HomeCarousel from '@/components/HomeCarousel';
 import SchoolLevelsSection from '@/components/SchoolLevelsSection';
+import SchoolResults from '@/components/SchoolResults';
+import ParentTestimonials from '@/components/ParentTestimonials';
+import NewsSection from '@/components/NewsSection';
 import CookieBanner from '@/components/CookieBanner';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -149,8 +152,17 @@ const Index = () => {
         </div>
       </section>
 
+      {/* School Results */}
+      <SchoolResults />
+
       {/* School Levels - Now using dynamic component */}
       <SchoolLevelsSection />
+
+      {/* Parent Testimonials */}
+      <ParentTestimonials />
+
+      {/* News Section */}
+      <NewsSection />
 
       {/* Enhanced CTA Section */}
       <section className="py-20 bg-gradient-to-r from-casa-blue to-casa-red text-white relative overflow-hidden">
