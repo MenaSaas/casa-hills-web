@@ -167,44 +167,63 @@ const Header = () => {
       </div>
 
       {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <div className="lg:hidden bg-white border-t shadow-lg">
-          <div className="px-4 py-2 space-y-1">
-            {mainNavigation.map((item) => (
+      {/* Mobile Navigation with animation */}
+      <div className={`lg:hidden bg-white border-t shadow-lg overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="px-4 py-2 space-y-1">
+          {mainNavigation.map((item) => (
+            <Link
+              key={item.name}
+              to={item.href}
+              className={`block py-3 px-4 text-sm font-medium rounded-md ${
+                location.pathname === item.href
+                  ? 'text-casa-blue bg-blue-50'
+                  : 'text-gray-700 hover:bg-gray-50'
+              }`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.name}
+            </Link>
+          ))}
+          
+          <div className="py-2">
+            <div className="text-sm font-medium text-gray-500 px-4 py-2">Cycles Scolaires</div>
+            {cyclesNavigation.map((cycle) => (
               <Link
-                key={item.name}
-                to={item.href}
-                className={`block py-3 px-4 text-sm font-medium rounded-md ${
-                  location.pathname === item.href
-                    ? 'text-casa-blue bg-blue-50'
-                    : 'text-gray-700 hover:bg-gray-50'
+                key={cycle.name}
+                to={cycle.href}
+                className={`block py-2 px-8 text-sm ${
+                  location.pathname === cycle.href
+                    ? 'text-casa-blue'
+                    : 'text-gray-600 hover:text-gray-900'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
-                {item.name}
+                {cycle.name} ({cycle.age})
               </Link>
             ))}
-            
-            <div className="py-2">
-              <div className="text-sm font-medium text-gray-500 px-4 py-2">Cycles Scolaires</div>
-              {cyclesNavigation.map((cycle) => (
-                <Link
-                  key={cycle.name}
-                  to={cycle.href}
-                  className={`block py-2 px-8 text-sm ${
-                    location.pathname === cycle.href
-                      ? 'text-casa-blue'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {cycle.name} ({cycle.age})
-                </Link>
-              ))}
+          </div>
+
+          {/* Contact info in mobile menu */}
+          <div className="border-t pt-4 pb-2 space-y-2">
+            <a href="tel:+212663514432" className="flex items-center px-4 py-2 text-sm text-gray-600 hover:text-casa-blue">
+              <Phone className="h-4 w-4 mr-3 text-casa-blue" />
+              +212 6 63 51 44 32
+            </a>
+            <a href="mailto:G.scasahills@gmail.com" className="flex items-center px-4 py-2 text-sm text-gray-600 hover:text-casa-blue">
+              <Mail className="h-4 w-4 mr-3 text-casa-blue" />
+              G.scasahills@gmail.com
+            </a>
+            <div className="flex items-center space-x-4 px-4 py-2">
+              <a href="https://web.facebook.com/profile.php?id=100078730485495" target="_blank" rel="noopener noreferrer">
+                <Facebook className="h-5 w-5 text-casa-blue hover:text-blue-700" />
+              </a>
+              <a href="https://www.instagram.com/ecolecasahills/" target="_blank" rel="noopener noreferrer">
+                <Instagram className="h-5 w-5 text-casa-blue hover:text-blue-700" />
+              </a>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 };

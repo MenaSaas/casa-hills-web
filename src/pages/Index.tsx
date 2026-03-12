@@ -152,8 +152,17 @@ const Index = () => {
         </div>
       </section>
 
+      {/* School Results */}
+      <SchoolResults />
+
       {/* School Levels - Now using dynamic component */}
       <SchoolLevelsSection />
+
+      {/* Parent Testimonials */}
+      <ParentTestimonials />
+
+      {/* News Section */}
+      <NewsSection />
 
       {/* Enhanced CTA Section */}
       <section className="py-20 bg-gradient-to-r from-casa-blue to-casa-red text-white relative overflow-hidden">
