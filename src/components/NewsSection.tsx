@@ -8,27 +8,27 @@ const NewsSection = () => {
   const news = [
     {
       id: 1,
-      title: "Journée Portes Ouvertes 2024",
-      excerpt: "Découvrez nos installations et rencontrez notre équipe pédagogique le samedi 16 mars 2024.",
-      date: "2024-03-16",
+      title: "Journée Portes Ouvertes 2024-2025",
+      excerpt: "Découvrez nos installations et rencontrez notre équipe pédagogique. Inscriptions ouvertes pour la rentrée scolaire septembre 2025.",
+      date: "2025-03-16",
       category: "Événement",
       image: "photo-1523050854058-8df90110c9f1",
       icon: <Users className="h-5 w-5" />
     },
     {
       id: 2,
-      title: "Nouveau Laboratoire de Sciences",
-      excerpt: "Inauguration de notre laboratoire de physique-chimie équipé des dernières technologies.",
-      date: "2024-03-10",
-      category: "Infrastructure",
+      title: "Célébration de la Fête de l'Indépendance",
+      excerpt: "Nos élèves ont célébré la Fête de l'Indépendance avec des activités culturelles et artistiques mettant en valeur le patrimoine marocain.",
+      date: "2025-01-11",
+      category: "Vie scolaire",
       image: "photo-1532094349884-543bc11b234d",
       icon: <BookOpen className="h-5 w-5" />
     },
     {
       id: 3,
-      title: "Succès aux Olympiades de Mathématiques",
-      excerpt: "Nos élèves remportent le 1er prix aux Olympiades Régionales de Mathématiques 2024.",
-      date: "2024-03-05",
+      title: "Succès aux Olympiades Nationales",
+      excerpt: "Nos élèves remportent le 1er prix aux Olympiades Nationales de Mathématiques à Rabat. Bravo à toute l'équipe !",
+      date: "2025-02-20",
       category: "Réussites",
       image: "photo-1596495577886-d920f1fb7238",
       icon: <Trophy className="h-5 w-5" />

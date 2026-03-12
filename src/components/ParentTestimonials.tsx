@@ -6,29 +6,29 @@ const ParentTestimonials = () => {
   const testimonials = [
     {
       name: "Mme Fatima Alaoui",
-      child: "Mère de Yasmine (CE2)",
+      child: "Mère de Yasmine (3ème année primaire)",
       text: "Casa Hills a transformé l'apprentissage de ma fille. L'approche bienveillante et l'excellence pédagogique sont remarquables. Yasmine s'épanouit chaque jour davantage.",
       rating: 5,
       image: "photo-1544725176-7c40e5a71c5e"
     },
     {
-      name: "M. Jean-Pierre Martin",
-      child: "Père de Thomas (3ème)",
-      text: "Une école exceptionnelle qui prépare vraiment nos enfants à l'avenir. L'équipe pédagogique est à l'écoute et les résultats parlent d'eux-mêmes.",
+      name: "M. Karim Bensouda",
+      child: "Père de Amine (3ème collège)",
+      text: "Une école exceptionnelle qui prépare vraiment nos enfants à l'avenir. L'équipe pédagogique est à l'écoute et les résultats au brevet régional parlent d'eux-mêmes.",
       rating: 5,
       image: "photo-1507003211169-0a1dd7228f2d"
     },
     {
       name: "Mme Aicha Bennani",
-      child: "Mère de Omar (Terminale)",
-      text: "Grâce à Casa Hills, Omar a développé sa confiance en lui et ses compétences. Il est maintenant prêt pour les meilleures universités.",
+      child: "Mère de Omar (2ème Bac)",
+      text: "Grâce à Casa Hills, Omar a développé sa confiance en lui et ses compétences. Il vise maintenant les classes préparatoires et les grandes écoles marocaines.",
       rating: 5,
       image: "photo-1494790108755-2616b612b550"
     },
     {
-      name: "M. David Cohen",
-      child: "Père de Sarah (CP)",
-      text: "L'environnement multiculturel et la qualité de l'enseignement font de Casa Hills un choix évident pour notre famille. Sarah adore aller à l'école !",
+      name: "M. Rachid El Idrissi",
+      child: "Père de Salma (1ère année primaire)",
+      text: "L'environnement multiculturel et la qualité de l'enseignement font de Casa Hills un choix évident. Le programme marocain enrichi par les langues est un vrai atout.",
       rating: 5,
       image: "photo-1472099645785-5658abf4ff4e"
     }
