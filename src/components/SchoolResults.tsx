@@ -8,7 +8,7 @@ const SchoolResults = () => {
       icon: <Trophy className="h-8 w-8 text-yellow-500" />,
       title: "Taux de Réussite",
       value: "98%",
-      description: "Baccalauréat 2024",
+      description: "Baccalauréat marocain 2024",
       trend: "+3% vs 2023"
     },
     {
@@ -22,25 +22,25 @@ const SchoolResults = () => {
       icon: <Globe className="h-8 w-8 text-green-500" />,
       title: "Études Supérieures",
       value: "95%",
-      description: "Intégration universités",
-      trend: "Écoles prestigieuses"
+      description: "CPGE, ENCG, ENSA, UM6P",
+      trend: "Grandes écoles marocaines"
     },
     {
       icon: <BookOpen className="h-8 w-8 text-purple-500" />,
       title: "Certifications",
       value: "92%",
       description: "Langues internationales",
-      trend: "TOEFL, DELF, Cambridge"
+      trend: "DELF, Cambridge, Goethe"
     }
   ];
 
   const achievements = [
-    "🏆 1er Prix Olympiades de Mathématiques Casablanca 2024",
+    "🏆 1er Prix Olympiades Nationales de Mathématiques 2024",
     "🌟 Certification Cambridge English School 2024",
-    "📚 Partenariat avec HEC Paris et Polytechnique",
-    "🎭 Festival International du Théâtre Scolaire - Médaille d'Or",
+    "📚 Partenariat avec UM6P et ISCAE",
+    "🎭 Festival Régional du Théâtre Scolaire - Médaille d'Or",
     "🔬 Concours National des Sciences - 3 prix d'excellence",
-    "🎨 Exposition Internationale d'Arts Plastiques - Mention spéciale"
+    "🇲🇦 Meilleure école privée de la région Casablanca-Settat 2024"
   ];
 
   return (

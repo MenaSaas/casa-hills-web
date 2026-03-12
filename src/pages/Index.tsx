@@ -83,8 +83,8 @@ const Index = () => {
               </p>
               <p className="text-lg mb-8 text-gray-700 leading-relaxed">
                 Découvrez une éducation d'exception dans un environnement multiculturel 
-                et bienveillant au cœur de Casablanca. Nous accompagnons chaque élève 
-                vers la réussite et l'épanouissement personnel.
+                et bienveillant à Sidi Bernoussi, Casablanca. Programme marocain enrichi, 
+                trilinguisme et accompagnement personnalisé pour chaque élève.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/admissions">
