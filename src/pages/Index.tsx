@@ -14,22 +14,22 @@ const Index = () => {
   const features = [{
     icon: <BookOpen className="h-8 w-8 text-casa-blue" />,
     title: "Excellence Académique",
-    description: "Programme éducatif rigoureux alliant tradition française et ouverture internationale.",
-    stats: "98% de réussite"
+    description: "Programme marocain enrichi, alliant rigueur du système national et ouverture internationale.",
+    stats: "98% de réussite au Bac"
   }, {
     icon: <Globe className="h-8 w-8 text-casa-blue" />,
-    title: "Environnement Multiculturel",
-    description: "Diversité culturelle enrichissante préparant nos élèves à un monde globalisé.",
-    stats: "International"
+    title: "Trilinguisme",
+    description: "Enseignement en arabe, français et anglais pour une formation complète et compétitive.",
+    stats: "3 langues"
   }, {
     icon: <Users className="h-8 w-8 text-casa-blue" />,
     title: "Équipe Pédagogique Qualifiée",
-    description: "Enseignants expérimentés et passionnés, formés aux meilleures pratiques éducatives.",
+    description: "Enseignants diplômés et expérimentés, formés aux meilleures pratiques éducatives marocaines et internationales.",
     stats: "1:12 ratio"
   }, {
     icon: <Award className="h-8 w-8 text-casa-blue" />,
     title: "Équipements Modernes",
-    description: "Laboratoires, bibliothèque, espaces sportifs et technologiques de dernière génération.",
+    description: "Laboratoires, bibliothèque, salles multimédias et espaces sportifs au cœur de Sidi Bernoussi.",
     stats: "100% équipé"
   }];
   const quickStats = [{
