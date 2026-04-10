@@ -1,10 +1,12 @@
-
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Calendar, ArrowRight, Users, BookOpen, Trophy } from 'lucide-react';
+import { useInView } from '@/hooks/useInView';
 
 const NewsSection = () => {
+  const { ref, isInView } = useInView({ threshold: 0.1 });
+
   const news = [
     {
       id: 1,
@@ -45,26 +47,33 @@ const NewsSection = () => {
   };
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-muted/50" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-display font-bold text-gray-900 mb-4">
+        <div className={`text-center mb-16 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <h2 className="text-4xl font-display font-bold text-foreground mb-4">
             Actualités & Vie Scolaire
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Suivez la vie active de notre école et les dernières nouvelles 
             de la communauté Casa Hills
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {news.map((article) => (
-            <Card key={article.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 group">
-              <div className="aspect-w-16 aspect-h-10 relative">
+          {news.map((article, index) => (
+            <Card 
+              key={article.id} 
+              className={`overflow-hidden hover:shadow-xl transition-all duration-500 hover:scale-105 group ${
+                isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${index * 150}ms` }}
+            >
+              <div className="relative">
                 <img
                   src={`https://images.unsplash.com/${article.image}?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80`}
                   alt={article.title}
                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-black/20"></div>
                 <div className="absolute top-4 left-4">
@@ -76,20 +85,20 @@ const NewsSection = () => {
               </div>
               
               <CardContent className="p-6">
-                <div className="flex items-center text-sm text-gray-500 mb-3">
+                <div className="flex items-center text-sm text-muted-foreground mb-3">
                   <Calendar className="h-4 w-4 mr-2" />
                   {formatDate(article.date)}
                 </div>
                 
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-casa-blue transition-colors">
+                <h3 className="text-xl font-semibold mb-3 text-foreground group-hover:text-casa-blue transition-colors">
                   {article.title}
                 </h3>
                 
-                <p className="text-gray-600 mb-4 line-clamp-3">
+                <p className="text-muted-foreground mb-4 line-clamp-3">
                   {article.excerpt}
                 </p>
                 
-                <button className="inline-flex items-center text-casa-blue hover:text-blue-700 font-medium transition-colors group">
+                <button className="inline-flex items-center text-casa-blue hover:text-blue-700 font-medium transition-colors">
                   Lire la suite
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </button>
